@@ -1,27 +1,42 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React, {ComponentProps} from 'react';
 import Header from "./Header";
+import ArticleTeaser from "./ArticleTeaser";
+import RestService from "../services/rest.service";
 
-class Index extends React.Component {
+interface IState {
+    list?: Array<any>;
+}
 
-    componentDidMount() {
+class Index extends React.Component<ComponentProps<any>, IState> {
 
-        /*fetch('http://jsonplaceholder.typicode.com/users')
-            .then(res => res.json())
-            .then((data) => {
-                console.log(data)
-            })
-            .catch(console.log)*/
+    constructor(props: Readonly<ComponentProps<any>>) {
+        super(props);
+        this.state = {};
+    }
+
+    async componentDidMount() {
+
+        this.setState({
+            list: await RestService.getList()
+        })
     }
 
     render() {
+
+        const items = (this.state.list || []).map((item, key) =>
+            <div key={item.id} className="col-sm-6 col-md-4">
+                <ArticleTeaser id={item.id} fields={item.fields}></ArticleTeaser>
+            </div>
+        );
+
         return (
             <div>
                 <Header/>
-                <ul>
-                    <li><Link to="/article/1">Article 1</Link></li>
-                    <li><Link to="/article/2">Article 2</Link></li>
-                </ul>
+                <div className="container">
+                    <div className="row">
+                        {items}
+                    </div>
+                </div>
             </div>
         );
     }
