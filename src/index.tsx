@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import AppRouter from './components/AppRouter';
+import AppRouter from './pages/AppRouter';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.scss';
+
 
 ReactDOM.render(<AppRouter />, document.getElementById('root'));
 

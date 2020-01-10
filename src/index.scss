@@ -1,0 +1,12 @@
+@import "styles/general.scss";
+@import "styles/header.scss";
+@import "styles/article-teaser.scss";
+
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #eee;
+}
+

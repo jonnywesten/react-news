@@ -1,0 +1,73 @@
+.header-container {
+  background: url('../assets/header-bg.jpg') no-repeat 50% 50%;
+  position: relative;
+}
+
+.header-title {
+  background: linear-gradient(to right, $blue 25%, transparent);
+  background-color: transparent;
+  color: #fff;
+  border-radius: 0;
+  text-shadow: 2px 2px black;
+  font-weight: 700;
+}
+
+
+.navbar {
+  transition: .75s max-height linear;
+  max-height: 100vh;
+
+  &.collapse {
+    max-height: 38px;
+    overflow: hidden;
+  }
+
+  .navbar-toggler {
+    border: 0;
+    outline: 0 !important;
+  }
+
+  .nav-link{
+    @media screen and (max-width: 768px){
+      border-top: 1px solid #666;
+    }
+  }
+
+  .search-bar {
+    position: absolute;
+    right: 10px;
+    top: 0;
+
+    $searchBarHeight: 28px;
+
+    .has-search .form-control {
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+      height: $searchBarHeight;
+      padding-right: $searchBarHeight;
+    }
+
+    .has-search .form-control-feedback {
+      position: absolute;
+      z-index: 2;
+      display: block;
+      width: $searchBarHeight;
+      height: $searchBarHeight;
+      line-height: $searchBarHeight;
+      text-align: center;
+      right: 0;
+      background: #666;
+      border: none;
+      color: #eee;
+      cursor: pointer;
+      transition: .1s background linear;
+      &:hover {
+        background: #888;
+      }
+    }
+  }
+
+
+}
+

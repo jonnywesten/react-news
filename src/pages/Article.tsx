@@ -1,7 +1,7 @@
 import React, {ComponentProps} from 'react';
-import {Link} from "react-router-dom";
-import Header from "./Header";
+import Header from "../components/Header";
 import RestService from "../services/rest.service";
+import {Link} from "react-router-dom";
 
 interface IState {
     headline?: string,
@@ -40,9 +40,7 @@ class Article extends React.Component<ComponentProps<any>, IState> {
         return (
             <div>
                 <Header/>
-                <div className="container">
-
-                    <Link to="/">Back</Link>
+                <div className="container white-bg">
 
                     <h4>{this.state.headline}</h4>
 
