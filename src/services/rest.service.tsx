@@ -1,13 +1,21 @@
-
 class RestService {
 
     private static apiUrl = "http://news.code-smart.com/";
 
-    static async getList(listIndex: number) {
+    static async getList(index: number, section: string | undefined, searchTerm: string | undefined) {
 
-        const params = "search?show-fields=thumbnail,trailText,headline,byline&page-size=20&page=" + listIndex;
+        let params = "search?show-fields=thumbnail,trailText,headline,byline&page-size=20&page=" + index;
+
+        if (section) {
+            params += "&section=" + section;
+        }
+
+        if (searchTerm) {
+            params += "&q=" + searchTerm;
+        }
+
         const response = await (await fetch(this.apiUrl + params)).json();
-        return response.response.results
+        return response.response;
     }
 
     static async getArticle(id: string) {

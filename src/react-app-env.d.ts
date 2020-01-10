@@ -2,4 +2,4 @@
 
 declare module 'javascript-time-ago';
 declare module 'javascript-time-ago/locale/en';
-declare module 'react-responsive-menubar/lib/NavBar';
+declare module 'react-distributed-forms';

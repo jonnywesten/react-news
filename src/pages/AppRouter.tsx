@@ -11,7 +11,8 @@ class AppRouter extends React.Component {
             <Router>
                 <Switch>
                     <Route path="/" exact component={Index}/>
-                    <Route path="/section/:sectionName" exact component={Index}/>
+                    <Route path="/search/:searchTerm" exact component={Index}/>
+                    <Route path="/section/:section" exact component={Index}/>
                     <Route path="/article/:id+" component={Article}/>
                     <Route component={() => <Redirect to='/'/>}/>
                 </Switch>

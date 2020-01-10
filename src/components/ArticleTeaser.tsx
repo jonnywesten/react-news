@@ -32,7 +32,7 @@ class ArticleTeaser extends React.Component<IProps> {
 
 
         return (
-            <Link to={'article/' + this.props.id} style={{textDecoration: 'none', color: 'inherit'}}>
+            <Link to={'/article/' + this.props.id} style={{textDecoration: 'none', color: 'inherit'}}>
 
                 <div className="img-container">
                     <img className="w-100" alt={fields.headline} src={fields.thumbnail}></img>

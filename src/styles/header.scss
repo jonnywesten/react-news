@@ -16,6 +16,7 @@
 .navbar {
   transition: .75s max-height linear;
   max-height: 100vh;
+  background: darken($blue, 50%);
 
   &.collapse {
     max-height: 38px;
@@ -28,8 +29,8 @@
   }
 
   .nav-link{
-    @media screen and (max-width: 768px){
-      border-top: 1px solid #666;
+    @media screen and (max-width: 992px){
+      border-top: 1px solid rgba(255,255,255,.5);
     }
   }
 
@@ -62,6 +63,7 @@
       color: #eee;
       cursor: pointer;
       transition: .1s background linear;
+      top: 5px;
       &:hover {
         background: #888;
       }

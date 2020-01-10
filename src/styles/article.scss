@@ -1,0 +1,38 @@
+.article-container{
+
+  figure,aside{
+    display: none;
+  }
+
+  .inner{
+    max-width: 600px;
+    margin: 0 auto;
+
+    h1,h2,h3,h4,h5,h6{
+      text-align: left !important;
+    }
+
+    h2.headline, .section-name{
+      text-align: left;
+      font-weight: 900;
+    }
+
+    .section-name{
+      background: darken($blue, 33%);
+      display: inline-block;
+      color: #fff;
+      padding: 5px 10px;
+      margin-bottom: 10px;
+    }
+
+    .img-sub{
+      font-size: 90%;
+    }
+    a, p{
+      color: #333;
+    }
+    a{
+      text-decoration: underline;
+    }
+  }
+}
