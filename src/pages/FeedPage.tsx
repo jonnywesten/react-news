@@ -3,42 +3,34 @@ import Header from "../components/Header";
 import ArticleTeaser from "../components/ArticleTeaser";
 import FeedService from "../services/feed.service";
 import debounce from "lodash.debounce";
+import {Article} from "../model/article";
 
 interface IState {
-    feed?: Array<any>;
-    endOfFeed?: boolean;
+    feed: Article[];
+    endReached: boolean;
 }
 
-class Index extends React.Component<ComponentProps<any>, IState> {
+class FeedPage extends React.Component<ComponentProps<any>, IState> {
 
-    state: IState = {};
-
-    shouldComponentUpdate(nextProps: Readonly<React.ComponentProps<any>>): boolean {
-
-        const searchTerm = nextProps.match.params.searchTerm;
-        const section = nextProps.match.params.section;
-
-        if (searchTerm !== this.props.match.params.searchTerm ||
-            section != this.props.match.params.section) {
-            this.setSectionAndSearchTerm(section, searchTerm);
-        }
-
-        return true;
-    }
+    state = {
+        feed: [],
+        endReached:false
+    };
 
     componentDidMount() {
 
-        this.setSectionAndSearchTerm(
+        this.setFeedParams(
             this.props.match.params.section,
             this.props.match.params.searchTerm
         );
 
+        // Endless scroll
         window.onscroll = debounce(async () => {
             if (
                 window.innerHeight + document.documentElement.scrollTop
-                === document.documentElement.offsetHeight
+                >= document.documentElement.offsetHeight - 80
             ) {
-                if(!this.state.endOfFeed) {
+                if(!this.state.endReached) {
                     await FeedService.loadNext();
                     this.updateFeed();
                 }
@@ -46,21 +38,38 @@ class Index extends React.Component<ComponentProps<any>, IState> {
         }, 100);
     }
 
+    shouldComponentUpdate(nextProps: Readonly<React.ComponentProps<any>>): boolean {
+
+        const searchTerm = nextProps.match.params.searchTerm;
+        const section = nextProps.match.params.section;
+
+        if (searchTerm !== this.props.match.params.searchTerm ||
+            section !== this.props.match.params.section) {
+            this.setFeedParams(section, searchTerm);
+        }
+        return true;
+    }
+
+
     componentWillUnmount() {
+        // Remove endless scroll listener
         window.onscroll = () => {
         };
     }
 
-    setSectionAndSearchTerm(
-        section: string | undefined,
-        searchTerm: string | undefined
-    ){
+    setFeedParams(section: string | undefined, searchTerm: string | undefined){
+
+        //Set document title
+        window.document.title = (searchTerm ? "Search | " : "") + "Code Smart News";
+        if(section){
+            window.document.title = section.replace(/^\w/, c => c.toUpperCase()) + " | Code Smart News";
+        }
 
         this.setState({
             feed: [],
-            endOfFeed: false
+            endReached: false
         }, () => {
-            FeedService.setSectionAndSearchTerm(section, searchTerm);
+            FeedService.setParams(section, searchTerm);
             this.updateFeed();
         });
 
@@ -72,7 +81,7 @@ class Index extends React.Component<ComponentProps<any>, IState> {
 
         this.setState({
             feed: feed,
-            endOfFeed: feed.length <= (this.state.feed || []).length || feed.length < 4
+            endReached: feed.length <= this.state.feed.length || feed.length < 4
         });
     }
 
@@ -85,29 +94,23 @@ class Index extends React.Component<ComponentProps<any>, IState> {
                 <Header/>
                 <div className="container white-bg p-4">
                     <div className="row">
-                        {(searchTerm) && <div className="col-12 mt-2 mb-5 text-bold">
+                        {searchTerm && <div className="col-12 mt-2 mb-5 text-bold">
                             <h2>
                                 {`Showing results for search term '${searchTerm}':`}
                             </h2>
                         </div>}
 
-                        {(this.state.feed || []).map((article, key) =>
+                        {this.state.feed.map((article, key) =>
                             <div key={key} className={"col-sm-6 col-md-4"}>
-                                <ArticleTeaser
-                                    id={article.id}
-                                    date={article.webPublicationDate}
-                                    section={article.sectionName}
-                                    fields={article.fields}
-                                />
+                                <ArticleTeaser article={article}/>
                             </div>
                         )}
                     </div>
                     <div className="row my-5 white-bg">
-                        {!this.state.endOfFeed &&
+                        {!this.state.endReached &&
                         <div className="col-12 text-center">
                             <div className="loader"/>
-                        </div>
-                        }
+                        </div>}
                     </div>
                 </div>
             </div>
@@ -115,4 +118,4 @@ class Index extends React.Component<ComponentProps<any>, IState> {
     }
 }
 
-export default Index;
+export default FeedPage;

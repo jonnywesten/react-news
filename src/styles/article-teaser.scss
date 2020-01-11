@@ -1,4 +1,4 @@
-.img-container{
+.teaser-img-container{
 
   position: relative;
 
@@ -7,7 +7,6 @@
     background: linear-gradient(to right, $blue 25%, transparent);
     padding: 4px 10px;
     color: #fff;
-    font-weight: bold;
     font-size: 14px;
     bottom: 0;
   }
@@ -17,7 +16,4 @@
   }
 }
 
-.teaser-headline{
-  font-weight: 900;
-}
 

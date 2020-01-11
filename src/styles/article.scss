@@ -12,17 +12,9 @@
       text-align: left !important;
     }
 
-    h2.headline, .section-name{
+    h2.headline{
       text-align: left;
       font-weight: 900;
-    }
-
-    .section-name{
-      background: darken($blue, 33%);
-      display: inline-block;
-      color: #fff;
-      padding: 5px 10px;
-      margin-bottom: 10px;
     }
 
     .img-sub{

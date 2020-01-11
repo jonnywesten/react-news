@@ -1,21 +1,32 @@
+$menuCollapseBreakpoint: 992px;
+$searchBarHeight: 28px;
+
 .header-container {
   background: url('../assets/header-bg.jpg') no-repeat 50% 50%;
   position: relative;
 }
 
 .header-title {
-  background: linear-gradient(to right, $blue 25%, transparent);
+  background: linear-gradient(to right, $blue 10%, transparent);
   background-color: transparent;
-  color: #fff;
   border-radius: 0;
-  text-shadow: 2px 2px black;
-  font-weight: 700;
+
+  a {
+    text-decoration: none !important;
+  }
+
+  .page-title {
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    text-shadow: 0px 8px 3px rgba(0, 0, 0, 0.1),
+    5px 10px 3px rgba(0, 0, 0, 0.05),
+    -5px 10px 3px rgba(0, 0, 0, 0.05);
+  }
 }
 
-
 .navbar {
-  transition: .75s max-height linear;
-  max-height: 100vh;
+  transition: .3s max-height linear;
+  max-height: 420px;
   background: darken($blue, 50%);
 
   &.collapse {
@@ -28,9 +39,9 @@
     outline: 0 !important;
   }
 
-  .nav-link{
-    @media screen and (max-width: 992px){
-      border-top: 1px solid rgba(255,255,255,.5);
+  .nav-link {
+    @media screen and (max-width: $menuCollapseBreakpoint) {
+      border-top: 1px solid rgba(255, 255, 255, .5);
     }
   }
 
@@ -38,8 +49,10 @@
     position: absolute;
     right: 10px;
     top: 0;
-
-    $searchBarHeight: 28px;
+    width: auto;
+    @media screen and (max-width: $menuCollapseBreakpoint) {
+      width: 70%;
+    }
 
     .has-search .form-control {
       border-radius: 0;
@@ -58,14 +71,15 @@
       line-height: $searchBarHeight;
       text-align: center;
       right: 0;
-      background: #666;
+      background: #838e99;
       border: none;
       color: #eee;
       cursor: pointer;
       transition: .1s background linear;
       top: 5px;
+
       &:hover {
-        background: #888;
+        background: #6d6d6d;
       }
     }
   }

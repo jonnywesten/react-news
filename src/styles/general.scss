@@ -1,3 +1,15 @@
+body {
+  margin: 0;
+  font-family: 'EB Garamond', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #eee;
+}
+
+h1,h2,h3,h4,h5,h6, .nav-link{
+  font-family: 'Oswald', sans-serif;
+}
+
 .white-bg{
   background: #fff;
 }
@@ -6,7 +18,8 @@ input, .btn, .form-control{
   border-radius: 0;
 }
 
-$blue : #6486e6;
+$blue : #4f9de8;
+
 
 .loader {
   border: 16px solid #f3f3f3; /* Light grey */
