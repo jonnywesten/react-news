@@ -8,7 +8,7 @@ class ApiService {
 
     private static apiUrl = "https://news.code-smart.com/api/";
 
-    static async getList(index: number, section: string | undefined, searchTerm: string | undefined): Promise<Article[]> {
+    static async getList(index: number, section?: string, searchTerm?: string): Promise<Article[]> {
 
         let params = "search?show-fields=thumbnail,trailText,headline&page-size=20&page=" + index;
 
@@ -39,7 +39,7 @@ class ApiService {
         return this.parseArticles(apiResponse)[0];
     }
 
-    static parseArticles(response: any): Article[] {
+    private static parseArticles(response: any): Article[] {
 
         return response.response.results
             .filter((el: Article) => {

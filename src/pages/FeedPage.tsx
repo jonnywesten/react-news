@@ -14,7 +14,7 @@ class FeedPage extends React.Component<ComponentProps<any>, IState> {
 
     state = {
         feed: [],
-        endReached:false
+        endReached: false
     };
 
     componentDidMount() {
@@ -26,14 +26,12 @@ class FeedPage extends React.Component<ComponentProps<any>, IState> {
 
         // Endless scroll
         window.onscroll = debounce(async () => {
-            if (
-                window.innerHeight + document.documentElement.scrollTop
-                >= document.documentElement.offsetHeight - 80
-            ) {
-                if(!this.state.endReached) {
-                    await FeedService.loadNext();
-                    this.updateFeed();
-                }
+            if ((window.innerHeight + document.documentElement.scrollTop
+                    >= document.documentElement.offsetHeight - 80)
+                && !this.state.endReached) {
+
+                await FeedService.loadNext();
+                this.updateFeed();
             }
         }, 100);
     }
@@ -53,25 +51,23 @@ class FeedPage extends React.Component<ComponentProps<any>, IState> {
 
     componentWillUnmount() {
         // Remove endless scroll listener
-        window.onscroll = () => {
-        };
+        window.onscroll = null;
     }
 
-    setFeedParams(section: string | undefined, searchTerm: string | undefined){
+    setFeedParams(section?: string, searchTerm?: string) {
 
         //Set document title
         window.document.title = (searchTerm ? "Search | " : "") + "Code Smart News";
-        if(section){
+        if (section) {
             window.document.title = section.replace(/^\w/, c => c.toUpperCase()) + " | Code Smart News";
         }
+
+        FeedService.setParams(section, searchTerm);
 
         this.setState({
             feed: [],
             endReached: false
-        }, () => {
-            FeedService.setParams(section, searchTerm);
-            this.updateFeed();
-        });
+        }, this.updateFeed);
 
     }
 

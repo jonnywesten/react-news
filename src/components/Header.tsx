@@ -47,7 +47,7 @@ class Header extends React.Component<ComponentProps<any>, IState> {
 
         const isActive = (section: string) => {
             const path = window.location.pathname;
-            return (section === "home" && path === "/") || path.endsWith(section);
+            return (section === "home" && path === "/") || path.includes(section);
         };
 
         return (
@@ -55,7 +55,10 @@ class Header extends React.Component<ComponentProps<any>, IState> {
                 <div className="container header-container p-0">
                     <div className="jumbotron header-title mb-0 px-3 py-2 py-sm-3 p-md-4">
                         <Link to="/">
-                            <h1 className="page-title">Code Smart News</h1>
+                            <h2 className="page-title">
+                                <i  style={{fontSize:"110%"}}
+                                    className="fa fa-globe mr-2"/>
+                                Code Smart News</h2>
                         </Link>
                     </div>
                 </div>

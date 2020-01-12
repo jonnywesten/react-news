@@ -5,7 +5,7 @@ export class Article {
     sectionName!:string;
     type!: string;
     webPublicationDate!:string;
-    timeAgo!:string;
+    timeAgo!: string;
     fields!: {
         headline: string;
         thumbnail: string;

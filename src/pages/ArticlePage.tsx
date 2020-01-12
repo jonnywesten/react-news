@@ -65,12 +65,10 @@ class ArticlePage extends React.Component<ComponentProps<any>, IState> {
 
         FeedService.setParams(this.state.article.sectionId);
         const feed = await FeedService.getFeed();
-        const related = feed
-            .filter(el => el.id !== this.state.article.id)
-            .slice(0, 3);
-
         this.setState({
-            related: related
+            related: feed
+                .filter(el => el.id !== this.state.article.id)
+                .slice(0, 3)
         });
     }
 
