@@ -70,15 +70,14 @@ $searchBarHeight: 28px;
       line-height: $searchBarHeight;
       text-align: center;
       right: 0;
-      background: darken($blue, 30%);
       border: none;
-      color: #eee;
+      color: #bbb;
       cursor: pointer;
-      transition: .1s background linear;
+      transition: .1s color linear;
       top: 5px;
 
       &:hover {
-        background: darken($blue, 25%);
+        color: #666;
       }
     }
   }

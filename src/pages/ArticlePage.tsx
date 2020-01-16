@@ -85,7 +85,7 @@ class ArticlePage extends React.Component<ComponentProps<any>, IState> {
 
                         <div className="inner py-5">
 
-                            <h2 className="headline">{article.fields.headline}</h2>
+                            <h2 className="text-left">{article.fields.headline}</h2>
                             <p className="byline text-muted">
                                 {article.timeAgo + " by " + article.fields.byline}
                             </p>

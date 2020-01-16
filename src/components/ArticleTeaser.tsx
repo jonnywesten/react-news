@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {Article} from "../model/article";
+import ImageRoll from "./ImageRoll";
+
 
 interface IProps {
     article: Article
@@ -16,8 +18,7 @@ class ArticleTeaser extends React.Component<IProps> {
             <Link to={'/article/' + article.id} style={{textDecoration: 'none', color: 'inherit'}}>
 
                 <div className="teaser-img-container">
-                    <img className="w-100" alt={article.fields.headline} src={article.fields.thumbnail}></img>
-                    <h5 className="section-name mb-0 w-100">{article.sectionName}</h5>
+                    <ImageRoll article={article}/>
                 </div>
 
                 <h4 className="mt-2 mb-0 font-weight-bolder">

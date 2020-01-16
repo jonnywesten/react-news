@@ -57,7 +57,7 @@ class Header extends React.Component<ComponentProps<any>, IState> {
                         <Link to="/">
                             <h2 className="page-title">
                                 <i  style={{fontSize:"110%"}}
-                                    className="fa fa-globe mr-2"/>
+                                    className="fa fa-globe mr-3"/>
                                 Code Smart News</h2>
                         </Link>
                     </div>
