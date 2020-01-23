@@ -20,6 +20,11 @@ class FeedService {
         const apiResponse = await ApiService.getList(++this.index, this.sectionName, this.searchTerm);
 
         this.feed = this.feed.concat(apiResponse);
+
+        //Prefetch next
+        setTimeout(() => {
+            ApiService.getList(this.index + 1, this.sectionName, this.searchTerm);
+        }, 200);
     }
 
     public static async getFeed(): Promise<Article[]> {

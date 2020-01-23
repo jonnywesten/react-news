@@ -7,6 +7,7 @@ TimeAgo.addLocale(en);
 class ApiService {
 
     private static apiUrl = "https://news.code-smart.com/api/";
+    private static cache: { [key: string]: any } = {};
 
     static async getList(index: number, section?: string, searchTerm?: string): Promise<Article[]> {
 
@@ -15,33 +16,30 @@ class ApiService {
         if (section) {
             params += "&section=" + section;
         }
-
         if (searchTerm) {
             params += "&q=" + searchTerm;
         }
 
-        const apiResponse = await (await fetch(this.apiUrl + params)).json();
-
-        if (apiResponse.response.status === "ok") {
-
-            return this.parseArticles(apiResponse);
-
-        } else {
-
-            return [];
-        }
+        return this.loadArticles(params);
     }
 
     static async getArticle(id: string): Promise<Article> {
 
         const params = "search?show-fields=thumbnail,trailText,headline,byline,body&ids=" + id;
-        const apiResponse = await (await fetch(this.apiUrl + params)).json();
-        return this.parseArticles(apiResponse)[0];
+
+        return this.loadArticles(params).then(r => r[0]);
     }
 
-    private static parseArticles(response: any): Article[] {
+    private static async loadArticles(params: string): Promise<Article[]> {
 
-        return response.response.results
+        const key = btoa(params);
+
+        const apiResponse = this.cache[key] || await (async () => {
+            this.cache[key] = await (await fetch(this.apiUrl + params)).json();
+            return this.cache[key];
+        })();
+
+        return (apiResponse?.response?.results || [])
             .filter((el: Article) => {
                 return el.type === "article" && !!el.fields.thumbnail;
             })

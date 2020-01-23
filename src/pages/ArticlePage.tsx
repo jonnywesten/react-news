@@ -46,6 +46,9 @@ class ArticlePage extends React.Component<ComponentProps<any>, IState> {
 
         if (article) {
 
+            // scroll to top
+            window.scrollTo(0, 0);
+
             // Set page title
             if (article.fields.headline) {
                 document.title = article.fields.headline + " | Code Smart News";

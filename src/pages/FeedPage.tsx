@@ -7,14 +7,14 @@ import {Article} from "../model/article";
 
 interface IState {
     feed: Article[];
-    endReached: boolean;
+    loading: boolean;
 }
 
 class FeedPage extends React.Component<ComponentProps<any>, IState> {
 
     state = {
         feed: [],
-        endReached: false
+        loading: true
     };
 
     componentDidMount() {
@@ -27,8 +27,8 @@ class FeedPage extends React.Component<ComponentProps<any>, IState> {
         // Endless scroll
         window.onscroll = debounce(async () => {
             if ((window.innerHeight + document.documentElement.scrollTop
-                    >= document.documentElement.offsetHeight - 80)
-                && !this.state.endReached) {
+                    >= document.documentElement.offsetHeight - 240)
+                && this.state.loading) {
 
                 await FeedService.loadNext();
                 this.updateFeed();
@@ -66,7 +66,7 @@ class FeedPage extends React.Component<ComponentProps<any>, IState> {
 
         this.setState({
             feed: [],
-            endReached: false
+            loading: true
         }, this.updateFeed);
 
     }
@@ -77,7 +77,7 @@ class FeedPage extends React.Component<ComponentProps<any>, IState> {
 
         this.setState({
             feed: feed,
-            endReached: feed.length <= this.state.feed.length || feed.length < 4
+            loading: !(feed.length <= this.state.feed.length || feed.length < 4)
         });
     }
 
@@ -103,7 +103,7 @@ class FeedPage extends React.Component<ComponentProps<any>, IState> {
                         )}
                     </div>
                     <div className="row my-5 white-bg">
-                        {!this.state.endReached &&
+                        {this.state.loading &&
                         <div className="col-12 text-center">
                             <div className="loader"/>
                         </div>}
