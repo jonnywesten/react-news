@@ -5,8 +5,6 @@ import NavBar from './NavBar'
 const Header = () => {
     const [showHeader, setShowHeader] = React.useState(true)
 
-    const onScroll = () => {}
-
     React.useEffect(() => {
         const handler = () => {
             if (

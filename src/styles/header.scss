@@ -34,6 +34,9 @@ $searchBarHeight: 37px;
         text-shadow: 0px 8px 3px rgba(0, 0, 0, 0.1),
             5px 10px 3px rgba(0, 0, 0, 0.05), -5px 10px 3px rgba(0, 0, 0, 0.05);
         white-space: pre;
+        @media screen and (max-width: $menuCollapseBreakpoint) {
+            font-size: 27px;
+        }
     }
 }
 .navbar-dark .navbar-nav .nav-link {
