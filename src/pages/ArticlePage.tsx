@@ -8,14 +8,14 @@ import Layout from '../components/Layout'
 import LoadingSpinner from '../components/LoadingSpinner'
 
 const ArticlePage = () => {
-    const [article, setArticle] = React.useState<Article>(new Article())
+    const [article, setArticle] = React.useState<Article | undefined>()
     const [related, setRelated] = React.useState<Article[]>([])
-    const [loading, setLoading] = React.useState(true)
     const params: { id: string } = useParams()
     const { fetchSingle, fetchMultiple } = useApi()
     const history = useHistory()
 
     React.useEffect(() => {
+        setArticle(undefined)
         init(params.id)
     }, [params.id])
 
@@ -29,7 +29,6 @@ const ArticlePage = () => {
             }
 
             setArticle(article)
-            setLoading(false)
             const feed = await fetchMultiple({ section: article.sectionId }, 1)
             setRelated(feed.filter((el) => el.id !== article.id).slice(0, 3))
         } else {
@@ -39,7 +38,7 @@ const ArticlePage = () => {
 
     return (
         <Layout>
-            {!loading ? (
+            {article ? (
                 <div className="inner px-4 pt-2 pt-sm-4 fade-in">
                     <h2 className="text-left">{article.fields.headline}</h2>
                     <p className="byline text-muted">
