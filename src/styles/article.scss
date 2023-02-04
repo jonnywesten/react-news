@@ -1,28 +1,33 @@
-.article-container{
-
-  figure,aside{
-    display: none;
-  }
-
-  .inner{
-    max-width: 600px;
-    margin: 0 auto;
-
-    h1,h2,h3,h4,h5,h6{
-      text-align: left !important;
-      font-weight: bold;
+.article-container {
+    padding-top: 116px !important;
+    figure,
+    aside {
+        display: none;
     }
+    min-height: 100vh;
 
+    .inner {
+        max-width: 600px;
+        margin: 0 auto;
 
-
-    .img-sub{
-      font-size: 90%;
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            text-align: left !important;
+            font-weight: bold;
+        }
+        .img-sub {
+            font-size: 90%;
+        }
+        a,
+        p {
+            color: #333;
+        }
+        a {
+            text-decoration: underline;
+        }
     }
-    a, p{
-      color: #333;
-    }
-    a{
-      text-decoration: underline;
-    }
-  }
 }

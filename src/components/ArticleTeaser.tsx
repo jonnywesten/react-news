@@ -1,24 +1,17 @@
-import React from 'react';
-import {Link} from "react-router-dom";
-import {Article} from "../model/article";
-import ImageRoll from "./ImageRoll";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Article } from '../model/article'
+import ImageRoll from './ImageRoll'
 
-
-interface IProps {
-    article: Article
-}
-
-class ArticleTeaser extends React.Component<IProps> {
-
-    render() {
-
-        const article = this.props.article;
-
-        return (
-            <Link to={'/article/' + article.id} style={{textDecoration: 'none', color: 'inherit'}}>
-
-                <div className="teaser-img-container">
-                    <ImageRoll article={article}/>
+const ArticleTeaser = ({ article }: { article: Article }) => {
+    return (
+        <div className="fade-in">
+            <Link
+                to={'/article/' + article.id}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+            >
+                <div className="position-relative">
+                    <ImageRoll article={article} />
                 </div>
 
                 <h4 className="mt-2 mb-0 font-weight-bolder">
@@ -29,13 +22,11 @@ class ArticleTeaser extends React.Component<IProps> {
                         {article.timeAgo}
                     </small>
                 </p>
-                <p className="mt-2 mb-4">
-                    {article.fields.trailText}
-                </p>
-                <hr className="d-sm-none mb-3"/>
+                <p className="mt-2 mb-4">{article.fields.trailText}</p>
+                <hr className="d-sm-none mb-3" />
             </Link>
-        );
-    }
+        </div>
+    )
 }
 
-export default ArticleTeaser;
+export default ArticleTeaser

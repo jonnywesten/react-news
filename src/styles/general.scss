@@ -1,36 +1,65 @@
 body {
-  margin: 0;
-  font-family: 'EB Garamond', serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: #eee;
+    margin: 0;
+    font-family: 'EB Garamond', serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #eee;
+    overflow-y: scroll;
 }
 
-$blue : #4f9de8;
+$blue: #4f9de8;
 
-h1,h2,h3,h4,h5,h6, .nav-link{
-  font-family: 'Oswald', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.nav-link {
+    font-family: 'Oswald', sans-serif;
 }
 
-.white-bg{
-  background: #fff;
+.white-bg {
+    background: #fff;
 }
 
-input, .btn, .form-control{
-  border-radius: 0;
+input,
+.btn,
+.form-control {
+    border-radius: 0;
+}
+
+.fade-in {
+    animation-duration: 0.5s;
+    animation-name: animate-fade;
+    animation-delay: 0.1s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes animate-fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid $blue; /* Blue */
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-  margin: 0 auto;
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid $blue; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    margin: 40px auto;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

@@ -1,85 +1,90 @@
 $menuCollapseBreakpoint: 992px;
 $searchBarHeight: 28px;
 
+.fixed-header {
+    z-index: 1;
+    width: 100%;
+}
+
 .header-container {
-  background: url('../assets/header-bg.jpg') no-repeat 50% 50%;
-  position: relative;
+    background: url('../assets/header-bg.jpg') no-repeat 0 0;
+    position: relative;
+    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.9);
 }
 
 .header-title {
-  background: transparent linear-gradient(to right, darken($blue, 30%) 10%, transparent);
-  border-radius: 0;
+    background: transparent
+        linear-gradient(to right, darken($blue, 30%) 10%, transparent);
+    border-radius: 0;
 
-  a {
-    text-decoration: none !important;
-  }
+    a {
+        text-decoration: none !important;
+    }
 
-  .page-title {
-    color: #fff;
-    font-family: 'Oswald', sans-serif;
-    text-shadow: 0px 8px 3px rgba(0, 0, 0, 0.1),
-    5px 10px 3px rgba(0, 0, 0, 0.05),
-    -5px 10px 3px rgba(0, 0, 0, 0.05);
-  }
+    .page-title {
+        color: #fff;
+        text-shadow: 0px 8px 3px rgba(0, 0, 0, 0.1),
+            5px 10px 3px rgba(0, 0, 0, 0.05), -5px 10px 3px rgba(0, 0, 0, 0.05);
+        white-space: pre;
+    }
 }
 
 .navbar {
-  transition: .3s max-height linear;
-  max-height: 420px;
-  background: darken($blue, 40%);
+    transition: 0.3s max-height linear;
+    max-height: 420px;
+    background: darken($blue, 40%);
 
-  &.collapse {
-    max-height: 38px;
-    overflow: hidden;
-  }
-
-  .navbar-toggler {
-    border: 0;
-    outline: 0 !important;
-  }
-
-  .nav-link {
-    @media screen and (max-width: $menuCollapseBreakpoint) {
-      border-top: 1px solid rgba(255, 255, 255, .5);
-    }
-  }
-
-  .search-bar {
-    position: absolute;
-    right: 10px;
-    top: 0;
-    width: auto;
-    @media screen and (max-width: $menuCollapseBreakpoint) {
-      width: 70%;
+    &.collapse {
+        max-height: 38px;
+        overflow: hidden;
     }
 
-    .has-search .form-control {
-      border-radius: 0;
-      box-shadow: none;
-      border: none;
-      height: $searchBarHeight;
-      padding-right: $searchBarHeight;
+    .navbar-toggler {
+        border: 0;
+        outline: 0 !important;
     }
 
-    .has-search .form-control-feedback {
-      position: absolute;
-      z-index: 2;
-      display: block;
-      width: $searchBarHeight;
-      height: $searchBarHeight;
-      line-height: $searchBarHeight;
-      text-align: center;
-      right: 0;
-      border: none;
-      color: #bbb;
-      cursor: pointer;
-      transition: .1s color linear;
-      top: 5px;
-
-      &:hover {
-        color: #666;
-      }
+    .nav-link {
+        @media screen and (max-width: $menuCollapseBreakpoint) {
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+        }
     }
-  }
+
+    .search-bar {
+        position: absolute;
+        right: 10px;
+        top: 0;
+        width: auto;
+        @media screen and (max-width: $menuCollapseBreakpoint) {
+            width: 70%;
+        }
+
+        .has-search .form-control {
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            height: $searchBarHeight;
+            padding-right: $searchBarHeight;
+        }
+
+        .has-search .form-control-feedback {
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width: $searchBarHeight;
+            height: $searchBarHeight;
+            line-height: $searchBarHeight;
+            text-align: center;
+            right: 0;
+            border: none;
+            color: #bbb;
+            cursor: pointer;
+            transition: 0.1s color linear;
+            top: 5px;
+
+            &:hover {
+                color: #666;
+            }
+        }
+    }
 }
-

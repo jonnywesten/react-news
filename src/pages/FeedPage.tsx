@@ -1,117 +1,78 @@
-import React, {ComponentProps} from 'react';
-import Header from "../components/Header";
-import ArticleTeaser from "../components/ArticleTeaser";
-import FeedService from "../services/feed.service";
-import debounce from "lodash.debounce";
-import {Article} from "../model/article";
+import React from 'react'
+import ArticleTeaser from '../components/ArticleTeaser'
+import debounce from 'lodash.debounce'
+import { useParams } from 'react-router-dom'
+import useFeed from '../hooks/useFeed'
+import Layout from '../components/Layout'
+import LoadingSpinner from '../components/LoadingSpinner'
 
-interface IState {
-    feed: Article[];
-    loading: boolean;
-}
+const FeedPage = () => {
+    const {
+        searchTerm,
+        section,
+    }: {
+        section: string
+        searchTerm: string
+    } = useParams()
+    const { feed, isComplete, loadNext, setParams } = useFeed({
+        searchTerm,
+        section,
+    })
 
-class FeedPage extends React.Component<ComponentProps<any>, IState> {
-
-    state = {
-        feed: [],
-        loading: true
-    };
-
-    componentDidMount() {
-
-        this.setFeedParams(
-            this.props.match.params.section,
-            this.props.match.params.searchTerm
-        );
-
-        // Endless scroll
-        window.onscroll = debounce(async () => {
-            if ((window.innerHeight + document.documentElement.scrollTop
-                    >= document.documentElement.offsetHeight - 240)
-                && this.state.loading) {
-
-                await FeedService.loadNext();
-                this.updateFeed();
+    React.useEffect(() => {
+        window.onscroll = debounce(() => {
+            if (
+                window.innerHeight + document.documentElement.scrollTop >=
+                    document.documentElement.offsetHeight - 240 &&
+                !isComplete
+            ) {
+                loadNext()
             }
-        }, 100);
-    }
+        }, 100)
 
-    shouldComponentUpdate(nextProps: Readonly<React.ComponentProps<any>>): boolean {
-
-        const searchTerm = nextProps.match.params.searchTerm;
-        const section = nextProps.match.params.section;
-
-        if (searchTerm !== this.props.match.params.searchTerm ||
-            section !== this.props.match.params.section) {
-            this.setFeedParams(section, searchTerm);
+        return () => {
+            window.onscroll = null
         }
-        return true;
-    }
+    })
 
+    React.useEffect(() => {
+        const title = section || searchTerm
+        setParams({ searchTerm, section })
 
-    componentWillUnmount() {
-        // Remove endless scroll listener
-        window.onscroll = null;
-    }
-
-    setFeedParams(section?: string, searchTerm?: string) {
-
-        //Set document title
-        window.document.title = (searchTerm ? "Search | " : "") + "Code Smart News";
-        if (section) {
-            window.document.title = section.replace(/^\w/, c => c.toUpperCase()) + " | Code Smart News";
+        if (title) {
+            window.document.title =
+                title.replace(/^\w/, (c) => c.toUpperCase()) +
+                ' | Code Smart News'
         }
+    }, [searchTerm, section])
 
-        FeedService.setParams(section, searchTerm);
-
-        this.setState({
-            feed: [],
-            loading: true
-        }, this.updateFeed);
-
-    }
-
-    async updateFeed() {
-
-        const feed = await FeedService.getFeed();
-
-        this.setState({
-            feed: feed,
-            loading: !(feed.length <= this.state.feed.length || feed.length < 4)
-        });
-    }
-
-    render() {
-
-        const searchTerm = this.props.match.params.searchTerm;
-
-        return (
-            <div>
-                <Header/>
-                <div className="container white-bg p-4">
+    return (
+        <Layout>
+            <>
+                <div className="container white-bg px-4 pt-2 pt-sm-4">
                     <div className="row">
-                        {searchTerm && <div className="col-12 mt-2 mb-5 text-bold">
-                            <h2>
-                                {`Showing results for search term '${searchTerm}':`}
-                            </h2>
-                        </div>}
-
-                        {this.state.feed.map((article, key) =>
-                            <div key={key} className={"col-sm-6 col-md-4"}>
-                                <ArticleTeaser article={article}/>
+                        {searchTerm && (
+                            <div className="col-12 mt-2 mb-5 text-bold">
+                                <h2>
+                                    {`Showing results for search term '${searchTerm}':`}
+                                </h2>
                             </div>
                         )}
-                    </div>
-                    <div className="row my-5 white-bg">
-                        {this.state.loading &&
-                        <div className="col-12 text-center">
-                            <div className="loader"/>
-                        </div>}
+
+                        {feed.map((article, i) => (
+                            <div
+                                key={article.id + i}
+                                className={'col-sm-6 col-md-4'}
+                            >
+                                <ArticleTeaser article={article} />
+                            </div>
+                        ))}
                     </div>
                 </div>
-            </div>
-        );
-    }
+                {!isComplete && <LoadingSpinner />}
+            </>
+        </Layout>
+    )
 }
 
-export default FeedPage;
+export default FeedPage

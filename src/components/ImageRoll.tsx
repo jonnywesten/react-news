@@ -1,34 +1,32 @@
-import React, {ComponentProps} from "react";
+import React, { ComponentProps } from 'react'
+import { Article } from '../model/article'
 
-interface IState {
-    loaded: boolean,
-}
+const ImageRoll = ({ article }: { article: Article }) => {
+    const [loading, setLoading] = React.useState(true)
 
-class ImageRoll extends React.Component<ComponentProps<any>, IState> {
-
-    state = {loaded: false};
-
-    showImage = () => {
-        this.setState({loaded: true});
+    const showImage = () => {
+        setLoading(false)
     }
 
-    render() {
-
-        const article = this.props.article;
-
-        return (
-            <div className="image-roll w-100">
-                <i className="fa fa-globe" style={this.state.loaded ? {display: "none"} : {}}/>
-                <div style={!this.state.loaded ? {display: "none"} : {}}>
-                    <img onLoad={this.showImage}
-                         className="w-100"
-                         alt={article.fields.headline}
-                         src={article.fields.thumbnail}/>
-                    <h5 className="section-name mb-0 w-100">{article.sectionName}</h5>
-                </div>
+    return (
+        <div className="image-roll w-100">
+            <i
+                className="fa fa-globe"
+                style={!loading ? { display: 'none' } : {}}
+            />
+            <div style={loading ? { display: 'none' } : {}}>
+                <img
+                    onLoad={showImage}
+                    className="w-100"
+                    alt={article.fields.headline}
+                    src={article.fields.thumbnail}
+                />
+                <h5 className="section-name mb-0 w-100">
+                    {article.sectionName}
+                </h5>
             </div>
-        );
-    }
+        </div>
+    )
 }
 
-export default ImageRoll;
+export default ImageRoll

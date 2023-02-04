@@ -1,127 +1,85 @@
-import React, {ComponentProps} from 'react';
-import Header from "../components/Header";
-import ApiService from "../services/api.service";
-import ShareButtons from "../components/ShareButtons";
-import {Article} from "../model/article";
-import FeedService from "../services/feed.service";
-import ArticleTeaser from "../components/ArticleTeaser";
+import React from 'react'
+import ShareButtons from '../components/ShareButtons'
+import { Article } from '../model/article'
+import ArticleTeaser from '../components/ArticleTeaser'
+import { useParams, useHistory } from 'react-router-dom'
+import useApi from '../hooks/useApi'
+import Layout from '../components/Layout'
+import LoadingSpinner from '../components/LoadingSpinner'
 
-interface IState {
-    article: Article,
-    related: Article[],
-    loading: boolean
-}
+const ArticlePage = () => {
+    const [article, setArticle] = React.useState<Article>(new Article())
+    const [related, setRelated] = React.useState<Article[]>([])
+    const [loading, setLoading] = React.useState(true)
+    const params: { id: string } = useParams()
+    const { fetchSingle, fetchMultiple } = useApi()
+    const history = useHistory()
 
-class ArticlePage extends React.Component<ComponentProps<any>, IState> {
+    React.useEffect(() => {
+        init(params.id)
+    }, [params.id])
 
-    state = {
-        article: new Article(),
-        related: [],
-        loading: true
-    };
-
-    componentDidMount() {
-
-        const id = this.props.match.params.id;
-        this.loadArticle(id);
-    }
-
-    shouldComponentUpdate(nextProps: Readonly<React.ComponentProps<any>>) {
-
-        const id = nextProps.match.params.id;
-
-        if (id !== this.props.match.params.id) {
-            this.loadArticle(id);
-        }
-        return true;
-    }
-
-    async loadArticle(id: string) {
-
-        this.setState({
-            loading: true
-        });
-
-        const article = await ApiService.getArticle(id);
+    const init = async (id: string) => {
+        const article = await fetchSingle(id)
 
         if (article) {
-
-            // scroll to top
-            window.scrollTo(0, 0);
-
-            // Set page title
+            window.scrollTo(0, 0)
             if (article.fields.headline) {
-                document.title = article.fields.headline + " | Code Smart News";
+                document.title = article.fields.headline + ' | Code Smart News'
             }
 
-            this.setState({
-                loading: false,
-                article: article
-            }, this.loadRelated);
-
+            setArticle(article)
+            setLoading(false)
+            const feed = await fetchMultiple({ section: article.sectionId }, 1)
+            setRelated(feed.filter((el) => el.id !== article.id).slice(0, 3))
         } else {
-            this.props.history.push('/');
+            history.push('/')
         }
     }
 
-    async loadRelated() {
+    return (
+        <Layout>
+            {!loading ? (
+                <div className="inner px-4 pt-2 pt-sm-4 fade-in">
+                    <h2 className="text-left">{article.fields.headline}</h2>
+                    <p className="byline text-muted">
+                        {article.timeAgo + ' by ' + article.fields.byline}
+                    </p>
+                    <ShareButtons />
+                    <hr />
 
-        FeedService.setParams(this.state.article.sectionId);
-        const feed = await FeedService.getFeed();
-        this.setState({
-            related: feed
-                .filter(el => el.id !== this.state.article.id)
-                .slice(0, 3)
-        });
-    }
+                    <img
+                        className="w-100"
+                        alt={article.fields.headline}
+                        src={article.fields.thumbnail}
+                    />
+                    <div className="img-sub font-italic mb-4">
+                        {article.fields.trailText}
+                    </div>
+                    <div
+                        className="text-justify"
+                        dangerouslySetInnerHTML={{
+                            __html: article.fields.body || '',
+                        }}
+                    />
+                    <hr />
 
-    render() {
-
-        const article = this.state.article;
-
-        return (
-            <div>
-                <Header/>
-                <div className="container white-bg article-container">
-
-                    {!this.state.loading ?
-
-                        <div className="inner py-5">
-
-                            <h2 className="text-left">{article.fields.headline}</h2>
-                            <p className="byline text-muted">
-                                {article.timeAgo + " by " + article.fields.byline}
-                            </p>
-                            <ShareButtons/>
-                            <hr/>
-
-                            <img className="w-100" alt={article.fields.headline} src={article.fields.thumbnail}/>
-                            <div className="img-sub font-italic mb-4">
-                                {article.fields.trailText}
+                    <h3 className="mt-5 mb-4">
+                        {'More ' + article.sectionName}
+                    </h3>
+                    <div className="row">
+                        {related.map((article, key) => (
+                            <div key={key} className={'col-sm-6 col-md-4'}>
+                                <ArticleTeaser article={article} />
                             </div>
-                            <div className="text-justify"
-                                 dangerouslySetInnerHTML={{__html: article.fields.body || ""}}/>
-                            <hr/>
-
-                            <h3 className="mt-5 mb-4">
-                                {"More from " + article.sectionName}
-                            </h3>
-                            <div className="row">
-                                {this.state.related.map((article, key) =>
-                                    <div key={key} className={"col-sm-6 col-md-4"}>
-                                        <ArticleTeaser article={article}/>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                        :
-                        <div className="col-12 text-center py-5">
-                            <div className="loader"/>
-                        </div>}
+                        ))}
+                    </div>
                 </div>
-            </div>
-        );
-    }
+            ) : (
+                <LoadingSpinner />
+            )}
+        </Layout>
+    )
 }
 
-export default ArticlePage;
+export default ArticlePage
