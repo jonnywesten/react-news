@@ -17,7 +17,6 @@ const Header = () => {
             } else {
                 setShowHeader(true)
             }
-            console.log(showHeader)
         }
 
         window.addEventListener('scroll', handler)
@@ -30,7 +29,7 @@ const Header = () => {
                 <div className={'container header-container p-0 '}>
                     <div
                         className={
-                            'jumbotron header-title mb-0 px-3 pb-1 pt-2 pb-sm-2 pt-sm-3' +
+                            'jumbotron header-title mb-0 px-3 p-2  p-sm-3' +
                             (showHeader ? '' : ' small')
                         }
                     >

@@ -17,14 +17,11 @@ $searchBarHeight: 37px;
         linear-gradient(to right, darken($blue, 30%) 10%, transparent);
     border-radius: 0;
     max-height: 'auto';
-    transition: all 0.2s linear;
+    transition: all 0.1s linear;
     &.small {
         @media screen and (min-width: $menuCollapseBreakpoint) {
             max-height: 0;
             padding: 0 1rem !important;
-            .page-title {
-                margin-bottom: 0;
-            }
         }
     }
     a {
@@ -32,14 +29,16 @@ $searchBarHeight: 37px;
     }
 
     .page-title {
-        transition: all 0.2s linear;
+        margin-bottom: 0;
         color: #fff;
         text-shadow: 0px 8px 3px rgba(0, 0, 0, 0.1),
             5px 10px 3px rgba(0, 0, 0, 0.05), -5px 10px 3px rgba(0, 0, 0, 0.05);
         white-space: pre;
     }
 }
-
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.75);
+}
 .navbar {
     transition: 0.3s max-height linear;
     max-height: 420px;
