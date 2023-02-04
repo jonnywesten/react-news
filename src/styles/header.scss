@@ -17,13 +17,7 @@ $searchBarHeight: 37px;
         linear-gradient(to right, darken($blue, 30%) 10%, transparent);
     border-radius: 0;
     max-height: 'auto';
-    transition: all 0.1s linear;
-    &.small {
-        @media screen and (min-width: $menuCollapseBreakpoint) {
-            max-height: 0;
-            padding: 0 1rem !important;
-        }
-    }
+
     a {
         text-decoration: none !important;
     }
