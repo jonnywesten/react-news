@@ -8,9 +8,6 @@ const NavBar = () => {
     const [showNav, setShowNav] = React.useState(false)
     const [searchTerm, setSearchTerm] = React.useState('')
 
-    const hideNav = () => {
-        setShowNav(false)
-    }
     const onSearchBarKeyDown = (e: any) => {
         if (e.keyCode === 13 || e.charCode === 13) {
             submitSearch()
@@ -18,7 +15,7 @@ const NavBar = () => {
     }
     const submitSearch = () => {
         if (searchTerm) {
-            hideNav()
+            setShowNav(false)
             history.push('/search/' + encodeURIComponent(searchTerm))
         }
     }
@@ -65,7 +62,7 @@ const NavBar = () => {
                         >
                             <Link
                                 className="nav-link pl-3 pl-md-1 pr-md-4 pr-xl-5 text-capitalize"
-                                onClick={hideNav}
+                                onClick={() => setShowNav(false)}
                                 to={'/section/' + section}
                             >
                                 {section}

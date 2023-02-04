@@ -9,7 +9,7 @@ $searchBarHeight: 28px;
 .header-container {
     background: url('../assets/header-bg.jpg') no-repeat 0 0;
     position: relative;
-    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.84);
 }
 
 .header-title {
@@ -33,10 +33,10 @@ $searchBarHeight: 28px;
     transition: 0.3s max-height linear;
     max-height: 420px;
     background: darken($blue, 40%);
+    overflow: hidden;
 
     &.collapse {
         max-height: 38px;
-        overflow: hidden;
     }
 
     .navbar-toggler {
