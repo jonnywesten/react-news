@@ -35,49 +35,42 @@ const ArticlePage = () => {
             history.push('/')
         }
     }
+    if (!article) return <LoadingSpinner />
 
     return (
-        <Layout>
-            {article ? (
-                <div className="inner px-4 pt-2 pt-sm-4 fade-in">
-                    <h2 className="text-left">{article.fields.headline}</h2>
-                    <p className="byline text-muted">
-                        {article.timeAgo + ' by ' + article.fields.byline}
-                    </p>
-                    <ShareButtons />
-                    <hr />
+        <div className="inner px-4 pt-2 pt-sm-4 fade-in">
+            <h2 className="text-left">{article.fields.headline}</h2>
+            <p className="byline text-muted">
+                {article.timeAgo + ' by ' + article.fields.byline}
+            </p>
+            <ShareButtons />
+            <hr />
 
-                    <img
-                        className="w-100"
-                        alt={article.fields.headline}
-                        src={article.fields.thumbnail}
-                    />
-                    <div className="img-sub font-italic mb-4">
-                        {article.fields.trailText}
-                    </div>
-                    <div
-                        className="text-justify"
-                        dangerouslySetInnerHTML={{
-                            __html: article.fields.body || '',
-                        }}
-                    />
-                    <hr />
+            <img
+                className="w-100"
+                alt={article.fields.headline}
+                src={article.fields.thumbnail}
+            />
+            <div className="img-sub font-italic mb-4">
+                {article.fields.trailText}
+            </div>
+            <div
+                className="text-justify"
+                dangerouslySetInnerHTML={{
+                    __html: article.fields.body || '',
+                }}
+            />
+            <hr />
 
-                    <h3 className="mt-5 mb-4">
-                        {'More ' + article.sectionName}
-                    </h3>
-                    <div className="row">
-                        {related.map((article, key) => (
-                            <div key={key} className={'col-sm-6 col-md-4'}>
-                                <ArticleTeaser article={article} />
-                            </div>
-                        ))}
+            <h3 className="mt-5 mb-4">{'More ' + article.sectionName}</h3>
+            <div className="row">
+                {related.map((article, key) => (
+                    <div key={key} className={'col-sm-6 col-md-4'}>
+                        <ArticleTeaser article={article} />
                     </div>
-                </div>
-            ) : (
-                <LoadingSpinner />
-            )}
-        </Layout>
+                ))}
+            </div>
+        </div>
     )
 }
 

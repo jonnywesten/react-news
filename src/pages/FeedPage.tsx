@@ -47,31 +47,29 @@ const FeedPage = () => {
     }, [searchTerm, section])
 
     return (
-        <Layout>
-            <>
-                <div className="container white-bg px-4 pt-2 pt-sm-4">
-                    <div className="row">
-                        {searchTerm && (
-                            <div className="col-12 mt-2 mb-5 text-bold">
-                                <h2>
-                                    {`Showing results for search term '${searchTerm}':`}
-                                </h2>
-                            </div>
-                        )}
+        <>
+            <div className="container white-bg px-4 pt-2 pt-sm-4">
+                <div className="row">
+                    {searchTerm && (
+                        <div className="col-12 mt-2 mb-5 text-bold">
+                            <h2>
+                                {`Showing results for search term '${searchTerm}':`}
+                            </h2>
+                        </div>
+                    )}
 
-                        {feed.map((article, i) => (
-                            <div
-                                key={article.id + i}
-                                className={'col-sm-6 col-md-4'}
-                            >
-                                <ArticleTeaser article={article} />
-                            </div>
-                        ))}
-                    </div>
+                    {feed.map((article, i) => (
+                        <div
+                            key={article.id + i}
+                            className={'col-sm-6 col-md-4'}
+                        >
+                            <ArticleTeaser article={article} />
+                        </div>
+                    ))}
                 </div>
-                {!isComplete && <LoadingSpinner />}
-            </>
-        </Layout>
+            </div>
+            {!isComplete && <LoadingSpinner />}
+        </>
     )
 }
 

@@ -1,5 +1,5 @@
 $menuCollapseBreakpoint: 992px;
-$searchBarHeight: 28px;
+$searchBarHeight: 37px;
 
 .fixed-header {
     z-index: 1;
@@ -16,12 +16,23 @@ $searchBarHeight: 28px;
     background: transparent
         linear-gradient(to right, darken($blue, 30%) 10%, transparent);
     border-radius: 0;
-
+    max-height: 'auto';
+    transition: all 0.2s linear;
+    &.small {
+        @media screen and (min-width: $menuCollapseBreakpoint) {
+            max-height: 0;
+            padding: 0 1rem !important;
+            .page-title {
+                margin-bottom: 0;
+            }
+        }
+    }
     a {
         text-decoration: none !important;
     }
 
     .page-title {
+        transition: all 0.2s linear;
         color: #fff;
         text-shadow: 0px 8px 3px rgba(0, 0, 0, 0.1),
             5px 10px 3px rgba(0, 0, 0, 0.05), -5px 10px 3px rgba(0, 0, 0, 0.05);
@@ -52,8 +63,8 @@ $searchBarHeight: 28px;
 
     .search-bar {
         position: absolute;
-        right: 10px;
-        top: 0;
+        right: -15px;
+        top: -5px;
         width: auto;
         @media screen and (max-width: $menuCollapseBreakpoint) {
             width: 70%;
