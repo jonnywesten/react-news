@@ -47,6 +47,6 @@
         "node-sass-install": "^1.0.2",
         "prettier": "2.8.3",
         "react-scripts": "5.0.1",
-        "typescript": "^3.7.4"
+        "typescript": "^4.9.5"
     }
 }
