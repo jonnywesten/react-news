@@ -59,7 +59,7 @@ const NavBar = () => {
                             key={section}
                         >
                             <Link
-                                className="nav-link pl-3 pl-md-1 pr-md-4 pr-xl-5 text-capitalize"
+                                className="nav-link pl-md-1 pr-md-4 pr-xl-5 text-capitalize"
                                 onClick={() => setShowNav(false)}
                                 to={'/section/' + section}
                             >
