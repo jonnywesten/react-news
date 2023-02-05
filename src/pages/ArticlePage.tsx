@@ -26,7 +26,7 @@ const ArticlePage = () => {
             window.scrollTo(0, 0)
             document.title = `${article.fields.headline} | React News`
 
-            const rel = await fetchMultiple({ section: article.sectionId }, 1)
+            const rel = await fetchMultiple({ section: article.sectionId })
             setRelated(rel.filter((el) => el.id !== article.id).slice(0, 6))
         } else {
             history.push('/')

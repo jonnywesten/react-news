@@ -18,7 +18,7 @@ const useApi = () => {
 
     const fetchMultiple = (
         params: IFeedParams,
-        index: number
+        index: number = 1
     ): Promise<Article[]> => {
         const { section, searchTerm } = params
         let query = `&show-fields=thumbnail,trailText,headline&page-size=20&page=${index}`
