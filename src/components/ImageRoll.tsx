@@ -1,4 +1,4 @@
-import React, { ComponentProps } from 'react'
+import React from 'react'
 import { Article } from '../model/article'
 
 const ImageRoll = ({ article }: { article: Article }) => {
