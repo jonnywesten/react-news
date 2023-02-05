@@ -22,8 +22,7 @@ const ArticleTeaser = ({ article }: { article: Article }) => {
                         {article.timeAgo}
                     </small>
                 </p>
-                <p className="mt-2 mb-4">{article.fields.trailText}</p>
-                <hr className="d-sm-none mb-3" />
+                <p className="mt-1 mb-5">{article.fields.trailText}</p>
             </Link>
         </div>
     )
