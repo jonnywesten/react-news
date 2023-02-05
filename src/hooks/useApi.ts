@@ -21,9 +21,7 @@ const useApi = () => {
         index: number
     ): Promise<Article[]> => {
         const { section, searchTerm } = params
-        let query =
-            'order-by=newest&show-fields=thumbnail,trailText,headline&page-size=20&page=' +
-            index
+        let query = `&show-fields=thumbnail,trailText,headline&page-size=20&page=${index}`
 
         if (section && section !== 'home') {
             query += '&section=' + section
@@ -35,9 +33,7 @@ const useApi = () => {
     }
 
     const fetchSingle = (id: string): Promise<Article> => {
-        const query =
-            'order-by=newest&show-fields=thumbnail,trailText,headline,byline,body&ids=' +
-            id
+        const query = `&show-fields=thumbnail,trailText,headline,byline,body&ids=${id}`
         return _fetchFromApi(query).then((r) => r[0])
     }
 
