@@ -114,7 +114,7 @@ const ShareButtons = () => {
 
             <a
                 className="resp-sharing-button__link"
-                href={'whatsapp://send?text=' + title}
+                href={`https://wa.me/?text=${title}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label=""
