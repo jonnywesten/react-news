@@ -23,7 +23,7 @@ const useApi = () => {
         const { section, searchTerm } = params
         let query = `&show-fields=thumbnail,trailText,headline&page-size=20&page=${index}`
 
-        if (section && section !== 'home') {
+        if (section && section !== 'all') {
             query += '&section=' + section
         }
         if (searchTerm) {

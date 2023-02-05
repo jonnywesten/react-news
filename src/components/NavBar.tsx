@@ -23,7 +23,7 @@ const NavBar = () => {
         return (section === 'home' && path === '/') || path.includes(section)
     }
     const headerSections = [
-        'home',
+        'all',
         'world',
         'politics',
         'business',
@@ -74,7 +74,7 @@ const NavBar = () => {
                 <div className="form-group input-group-sm has-search">
                     <input
                         name={'searchTerm'}
-                        className="form-control mr-5 mr-md-4"
+                        className="form-control"
                         onChange={(e: {
                             target: {
                                 value: React.SetStateAction<any>

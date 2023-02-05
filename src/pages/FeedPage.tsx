@@ -36,16 +36,25 @@ const FeedPage = () => {
         <div className="container">
             <div className="row">
                 {searchTerm && (
-                    <div className="col-12 mt-2 mb-5 text-bold">
-                        <h2>
-                            {`Showing results for search term '${searchTerm}':`}
-                        </h2>
+                    <div className="col-12 mb-3 text-bold">
+                        <h2>{`Results for search term '${searchTerm}':`}</h2>
                     </div>
                 )}
                 {feed.map((article, i) => (
-                    <div key={article.id + i} className={'col-sm-6 col-md-4'}>
-                        <ArticleTeaser article={article} />
-                    </div>
+                    <>
+                        <div
+                            key={article.id + i}
+                            className={
+                                i === 0
+                                    ? 'col-sm-12 col-md-8 col-lg-6'
+                                    : i < 3
+                                    ? 'col-sm-6 col-md-4 col-lg-3'
+                                    : 'col-sm-6 col-md-4 col-lg-3'
+                            }
+                        >
+                            <ArticleTeaser article={article} />
+                        </div>
+                    </>
                 ))}
             </div>
             {!isComplete && <LoadingSpinner />}

@@ -48,6 +48,7 @@ $searchBarHeight: 37px;
     .navbar-toggler {
         border: 0;
         outline: 0 !important;
+        padding-right: 200px;
     }
 
     .nav-link {
@@ -61,6 +62,7 @@ $searchBarHeight: 37px;
         right: -15px;
         top: -5px;
         width: auto;
+        max-width: 420px;
         @media screen and (max-width: $menuCollapseBreakpoint) {
             width: calc(100% - 64px);
         }
