@@ -6,11 +6,9 @@ import useFeed, { IFeedParams } from '../hooks/useFeed'
 import LoadingSpinner from '../components/LoadingSpinner'
 
 const FeedPage = () => {
-    const { searchTerm, section }: IFeedParams = useParams()
-    const { feed, isComplete, loadNext } = useFeed({
-        searchTerm,
-        section,
-    })
+    const params: IFeedParams = useParams()
+    const { searchTerm, section } = params
+    const { feed, isComplete, loadNext } = useFeed(params)
 
     React.useEffect(() => {
         window.document.title =
