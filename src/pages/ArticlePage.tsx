@@ -43,14 +43,14 @@ const ArticlePage = () => {
                 {article.timeAgo + ' by ' + article.fields.byline}
             </p>
             <ShareButtons />
-            <hr />
+            <hr className="mx-5" />
 
             <img
                 className="w-100"
                 alt={article.fields.headline}
                 src={article.fields.thumbnail}
             />
-            <div className="img-sub font-italic mb-4">
+            <div className="img-sub font-italic mt-1 mb-4">
                 {article.fields.trailText}
             </div>
             <div
@@ -59,7 +59,7 @@ const ArticlePage = () => {
                     __html: article.fields.body || '',
                 }}
             />
-            <hr />
+            <hr className="mx-5" />
 
             <h3 className="mt-5 mb-4">{'More ' + article.sectionName}</h3>
             <div className="row">

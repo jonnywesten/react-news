@@ -17,7 +17,7 @@ const ArticleTeaser = ({ article }: { article: Article }) => {
                 <h4 className="mt-2 mb-0 font-weight-bolder">
                     {article.fields.headline}
                 </h4>
-                <p className="mb-0">
+                <p className="mt-1 mb-0">
                     <small className="text-muted font-italic">
                         {article.timeAgo}
                     </small>
