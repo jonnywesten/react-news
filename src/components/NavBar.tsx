@@ -20,7 +20,7 @@ const NavBar = () => {
     }
     const isActive = (section: string) => {
         const path = window.location.pathname
-        return (section === 'home' && path === '/') || path.includes(section)
+        return path.includes(section)
     }
     const headerSections = [
         'all',
