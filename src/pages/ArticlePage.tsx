@@ -37,7 +37,7 @@ const ArticlePage = () => {
     if (!article) return <LoadingSpinner />
 
     return (
-        <div className="inner fade-in px-3">
+        <div className="inner fade-in">
             <h2 className="text-left">{article.fields.headline}</h2>
             <p className="byline text-muted">
                 {article.timeAgo + ' by ' + article.fields.byline}
