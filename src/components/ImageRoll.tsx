@@ -6,11 +6,8 @@ const ImageRoll = ({ article }: { article: Article }) => {
 
     return (
         <div className="image-roll w-100">
-            <i
-                className="fa fa-globe"
-                style={!loading ? { display: 'none' } : {}}
-            />
-            <div style={loading ? { display: 'none' } : {}}>
+            <i className={'fa fa-globe ' + !loading && 'd-none'} />
+            <div className={loading ? 'd-none' : undefined}>
                 <img
                     onLoad={() => setLoading(false)}
                     className="w-100"

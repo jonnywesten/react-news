@@ -7,19 +7,20 @@ const NavBar = () => {
     const [showNav, setShowNav] = React.useState(false)
     const [searchTerm, setSearchTerm] = React.useState('')
 
-    const onSearchBarKeyDown = (e: any) => {
+    const onSearchChange = (e) => setSearchTerm(e.target.value)
+
+    const onSearchKeyDown = (e: any) => {
         if (e.keyCode === 13 || e.charCode === 13) {
             submitSearch()
         }
     }
+
     const submitSearch = () => {
         if (searchTerm) {
             setShowNav(false)
             history.push('/search/' + encodeURIComponent(searchTerm))
         }
     }
-    const isActive = (section: string) =>
-        window.location.pathname.includes(section)
 
     const headerSections = [
         'all',
@@ -42,9 +43,7 @@ const NavBar = () => {
             <button
                 className="navbar-toggler pl-0"
                 type="button"
-                onClick={() => {
-                    setShowNav(!showNav)
-                }}
+                onClick={() => setShowNav(!showNav)}
             >
                 <span className="navbar-toggler-icon" />
             </button>
@@ -52,9 +51,10 @@ const NavBar = () => {
                 <ul className="navbar-nav">
                     {headerSections.map((section, key) => (
                         <li
-                            className={
-                                'nav-item ' + (isActive(section) && ' active')
-                            }
+                            className={`nav-item ${
+                                window.location.pathname.includes(section) &&
+                                'active'
+                            }`}
                             key={key}
                         >
                             <Link
@@ -73,12 +73,8 @@ const NavBar = () => {
                     <input
                         name={'searchTerm'}
                         className="form-control"
-                        onChange={(e: {
-                            target: {
-                                value: React.SetStateAction<any>
-                            }
-                        }) => setSearchTerm(e.target.value)}
-                        onKeyDown={onSearchBarKeyDown}
+                        onChange={onSearchChange}
+                        onKeyDown={onSearchKeyDown}
                         placeholder="Search.."
                     />
                     <div
