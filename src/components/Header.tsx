@@ -3,8 +3,6 @@ import { Link, withRouter } from 'react-router-dom'
 import NavBar from './NavBar'
 
 const Header = () => {
-    const [showHeader, setShowHeader] = React.useState(true)
-
     return (
         <>
             <div className="fixed-header position-fixed">

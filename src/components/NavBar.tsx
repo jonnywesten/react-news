@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { Form, Input } from 'react-distributed-forms'
 import { useHistory } from 'react-router-dom'
 
 const NavBar = () => {

@@ -4,7 +4,6 @@ import { Article } from '../model/article'
 import ArticleTeaser from '../components/ArticleTeaser'
 import { useParams, useHistory } from 'react-router-dom'
 import useApi from '../hooks/useApi'
-import Layout from '../components/Layout'
 import LoadingSpinner from '../components/LoadingSpinner'
 
 const ArticlePage = () => {
@@ -30,7 +29,7 @@ const ArticlePage = () => {
 
             setArticle(article)
             const feed = await fetchMultiple({ section: article.sectionId }, 1)
-            setRelated(feed.filter((el) => el.id !== article.id).slice(0, 3))
+            setRelated(feed.filter((el) => el.id !== article.id).slice(0, 6))
         } else {
             history.push('/')
         }

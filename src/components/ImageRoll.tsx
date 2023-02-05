@@ -4,10 +4,6 @@ import { Article } from '../model/article'
 const ImageRoll = ({ article }: { article: Article }) => {
     const [loading, setLoading] = React.useState(true)
 
-    const showImage = () => {
-        setLoading(false)
-    }
-
     return (
         <div className="image-roll w-100">
             <i
@@ -16,7 +12,7 @@ const ImageRoll = ({ article }: { article: Article }) => {
             />
             <div style={loading ? { display: 'none' } : {}}>
                 <img
-                    onLoad={showImage}
+                    onLoad={() => setLoading(false)}
                     className="w-100"
                     alt={article.fields.headline}
                     src={article.fields.thumbnail}

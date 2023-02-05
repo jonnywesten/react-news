@@ -14,8 +14,8 @@ const useFeed = ({ searchTerm, section }: IFeedParams) => {
         section,
     })
     const [index, setIndex] = React.useState(0)
-    const { fetchMultiple } = useApi()
     const [isComplete, setIsComplete] = React.useState(false)
+    const { fetchMultiple } = useApi()
 
     React.useEffect(() => {
         if (params.searchTerm || params.section) {
