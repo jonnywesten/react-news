@@ -43,10 +43,9 @@ const ArticlePage = () => {
                 {article.timeAgo + ' by ' + article.fields.byline}
             </p>
             <ShareButtons />
-            <hr className="mx-5" />
 
             <img
-                className="w-100"
+                className="w-100 mt-2"
                 alt={article.fields.headline}
                 src={article.fields.thumbnail}
             />
@@ -54,12 +53,11 @@ const ArticlePage = () => {
                 {article.fields.trailText}
             </div>
             <div
-                className="text-justify"
+                className="mb-2"
                 dangerouslySetInnerHTML={{
                     __html: article.fields.body || '',
                 }}
             />
-            <hr className="mx-5" />
 
             <h3 className="mt-5 mb-4">{'More ' + article.sectionName}</h3>
             <div className="row">
