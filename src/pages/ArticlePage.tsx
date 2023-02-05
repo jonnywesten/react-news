@@ -22,25 +22,24 @@ const ArticlePage = () => {
         const article = await fetchSingle(id)
 
         if (article) {
-            window.scrollTo(0, 0)
-            if (article.fields.headline) {
-                document.title = article.fields.headline + ' | React News'
-            }
-
             setArticle(article)
-            const feed = await fetchMultiple({ section: article.sectionId }, 1)
-            setRelated(feed.filter((el) => el.id !== article.id).slice(0, 6))
+            window.scrollTo(0, 0)
+            document.title = `${article.fields.headline} | React News`
+
+            const rel = await fetchMultiple({ section: article.sectionId }, 1)
+            setRelated(rel.filter((el) => el.id !== article.id).slice(0, 6))
         } else {
             history.push('/')
         }
     }
+
     if (!article) return <LoadingSpinner />
 
     return (
         <div className="inner fade-in">
             <h2 className="text-left">{article.fields.headline}</h2>
             <p className="byline text-muted">
-                {article.timeAgo + ' by ' + article.fields.byline}
+                {`${article.timeAgo} by ${article.fields.byline}`}
             </p>
             <ShareButtons />
 
@@ -59,7 +58,7 @@ const ArticlePage = () => {
                 }}
             />
 
-            <h3 className="mt-5 mb-4">{'More ' + article.sectionName}</h3>
+            <h3 className="mt-5 mb-4">{`More ${article.sectionName}`}</h3>
             <div className="row">
                 {related.map((article, key) => (
                     <div key={key} className={'col-sm-6 col-md-4'}>
