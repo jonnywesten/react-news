@@ -18,7 +18,7 @@ const FeedPage = () => {
         window.onscroll = debounce(() => {
             if (
                 window.innerHeight + document.documentElement.scrollTop >=
-                    document.documentElement.offsetHeight - 240 &&
+                    document.documentElement.offsetHeight - 700 &&
                 !isComplete
             ) {
                 loadNext()
