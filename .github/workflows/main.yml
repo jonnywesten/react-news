@@ -1,0 +1,31 @@
+on: push
+name: Build and Publish Front End Framework Website
+jobs:
+    FTP-Deploy-Action:
+        name: FTP-Deploy-Action
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@master
+
+            - name: Use Node.js 12.x
+              uses: actions/setup-node@v1
+              with:
+                  node-version: '12.x'
+
+            - name: Build Project
+              run: |
+                  npm install
+                  npm run build --if-present
+
+            - name: List output files
+              run: ls
+
+            - name: Sync files
+              uses: SamKirkland/FTP-Deploy-Action@4.0.0
+              with:
+                  server: news.code-smart.com
+                  username: ${{ secrets.FTP_USERNAME }}
+                  password: ${{ secrets.FTP_PASSWORD }}
+                  server-dir: news.code-smart.com/
+                  local-dir: dist/
+                  dangerous-clean-slate: true
