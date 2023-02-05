@@ -41,20 +41,16 @@ const FeedPage = () => {
                     </div>
                 )}
                 {feed.map((article, i) => (
-                    <>
-                        <div
-                            key={article.id + i}
-                            className={
-                                i === 0
-                                    ? 'col-sm-12 col-md-8 col-lg-6'
-                                    : i < 3
-                                    ? 'col-sm-6 col-md-4 col-lg-3'
-                                    : 'col-sm-6 col-md-4 col-lg-3'
-                            }
-                        >
-                            <ArticleTeaser article={article} />
-                        </div>
-                    </>
+                    <div
+                        key={article.id + i}
+                        className={
+                            i === 0
+                                ? 'col-sm-12 col-md-8 col-lg-6'
+                                : 'col-sm-6 col-md-4 col-lg-3'
+                        }
+                    >
+                        <ArticleTeaser article={article} />
+                    </div>
                 ))}
             </div>
             {!isComplete && <LoadingSpinner />}
