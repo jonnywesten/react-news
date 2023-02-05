@@ -7,7 +7,7 @@ const NavBar = () => {
     const [showNav, setShowNav] = React.useState(false)
     const [searchTerm, setSearchTerm] = React.useState('')
     const headerSections = [
-        'all',
+        'latest',
         'world',
         'politics',
         'business',
@@ -50,13 +50,13 @@ const NavBar = () => {
             </button>
             <div className={'navbar-collapse'}>
                 <ul className="navbar-nav">
-                    {headerSections.map((section, key) => (
+                    {headerSections.map((section) => (
                         <li
                             className={`nav-item ${
                                 window.location.pathname.includes(section) &&
                                 'active'
                             }`}
-                            key={key}
+                            key={section}
                         >
                             <Link
                                 className="nav-link pl-3 pl-md-1 pr-md-4 pr-xl-5 text-capitalize"

@@ -17,7 +17,7 @@ const AppRouter = () => {
                     <Route
                         path="/"
                         exact
-                        component={() => <Redirect to="/section/all" />}
+                        component={() => <Redirect to="/section/latest" />}
                     />
                     <Route
                         path="/search/:searchTerm"

@@ -8,8 +8,8 @@ import useFeed from '../hooks/useFeed'
 import LoadingSpinner from '../components/LoadingSpinner'
 
 const ArticlePage = () => {
-    const [article, setArticle] = React.useState<Article | undefined>()
     const params: { id: string } = useParams()
+    const [article, setArticle] = React.useState<Article | undefined>()
     const [related, setRelated] = React.useState<string | undefined>()
     const { feed, isComplete } = useFeed({ section: related })
     const { fetchSingle } = useApi()
@@ -25,9 +25,8 @@ const ArticlePage = () => {
 
         if (article) {
             setArticle(article)
-            window.scrollTo(0, 0)
-            document.title = `${article.fields.headline} | React News`
             setRelated(article.sectionId)
+            document.title = `${article.fields.headline} | React News`
         } else {
             history.push('/')
         }

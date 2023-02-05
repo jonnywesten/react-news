@@ -28,7 +28,7 @@ const useApi = () => {
         const { section, searchTerm } = params
         let query = `&show-fields=thumbnail,trailText,headline&page-size=20&page=${index}`
 
-        if (section && section !== 'all') {
+        if (section && section !== 'latest') {
             query += '&section=' + section
         }
         if (searchTerm) {
@@ -38,7 +38,8 @@ const useApi = () => {
     }
 
     const _fetchFromApi = async (query: string): Promise<Article[]> => {
-        return fetch(API_URL + query + API_KEY)
+        const url = API_URL + query + API_KEY
+        return fetch(url)
             .then(async (response) => {
                 if (response.ok) {
                     const json = await response.json()
