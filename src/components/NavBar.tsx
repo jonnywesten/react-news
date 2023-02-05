@@ -18,10 +18,9 @@ const NavBar = () => {
             history.push('/search/' + encodeURIComponent(searchTerm))
         }
     }
-    const isActive = (section: string) => {
-        const path = window.location.pathname
-        return path.includes(section)
-    }
+    const isActive = (section: string) =>
+        window.location.pathname.includes(section)
+
     const headerSections = [
         'all',
         'world',
