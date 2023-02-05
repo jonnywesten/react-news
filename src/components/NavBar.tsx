@@ -11,7 +11,7 @@ const NavBar = () => {
         target: { value: React.SetStateAction<string> }
     }) => setSearchTerm(e.target.value)
 
-    const onSearchKeyDown = (e: any) => {
+    const onSearchKeyDown = (e: { keyCode: number; charCode: number }) => {
         if (e.keyCode === 13 || e.charCode === 13) {
             submitSearch()
         }
