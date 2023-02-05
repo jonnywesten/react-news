@@ -7,12 +7,16 @@ import LoadingSpinner from '../components/LoadingSpinner'
 
 const FeedPage = () => {
     const { searchTerm, section }: IFeedParams = useParams()
-    const { feed, isComplete, loadNext, setParams } = useFeed({
+    const { feed, isComplete, loadNext } = useFeed({
         searchTerm,
         section,
     })
 
     React.useEffect(() => {
+        window.document.title =
+            (section || searchTerm)?.replace(/^\w/, (c) => c.toUpperCase()) +
+            ' | Code Smart News'
+
         window.onscroll = debounce(() => {
             if (
                 window.innerHeight + document.documentElement.scrollTop >=
@@ -27,13 +31,6 @@ const FeedPage = () => {
             window.onscroll = null
         }
     })
-
-    React.useEffect(() => {
-        setParams({ searchTerm, section })
-        window.document.title =
-            (section || searchTerm)?.replace(/^\w/, (c) => c.toUpperCase()) +
-            ' | Code Smart News'
-    }, [searchTerm, section])
 
     return (
         <div className="container">
