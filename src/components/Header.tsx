@@ -13,7 +13,7 @@ const Header = () => {
                                 style={{ fontSize: '110%' }}
                                 className="fa fa-globe mr-3"
                             />
-                            Code Smart News
+                            React News
                         </h2>
                     </Link>
                 </div>

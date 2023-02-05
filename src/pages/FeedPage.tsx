@@ -13,7 +13,7 @@ const FeedPage = () => {
     React.useEffect(() => {
         window.document.title =
             (section || searchTerm)?.replace(/^\w/, (c) => c.toUpperCase()) +
-            ' | Code Smart News'
+            ' | React News'
 
         window.onscroll = debounce(() => {
             if (

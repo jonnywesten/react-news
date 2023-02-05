@@ -24,7 +24,7 @@ const ArticlePage = () => {
         if (article) {
             window.scrollTo(0, 0)
             if (article.fields.headline) {
-                document.title = article.fields.headline + ' | Code Smart News'
+                document.title = article.fields.headline + ' | React News'
             }
 
             setArticle(article)
