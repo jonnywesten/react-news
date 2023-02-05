@@ -48,7 +48,7 @@ const FeedPage = () => {
 
     return (
         <>
-            <div className="container white-bg px-4 pt-2 pt-sm-4">
+            <div className="container">
                 <div className="row">
                     {searchTerm && (
                         <div className="col-12 mt-2 mb-5 text-bold">

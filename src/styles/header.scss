@@ -13,8 +13,7 @@ $searchBarHeight: 37px;
 }
 
 .header-title {
-    background: transparent
-        linear-gradient(to right, darken($blue, 30%) 10%, transparent);
+    background: transparent linear-gradient(to right, #50a1ef, 45%, transparent);
     border-radius: 0;
     max-height: 'auto';
 
@@ -63,7 +62,7 @@ $searchBarHeight: 37px;
         top: -5px;
         width: auto;
         @media screen and (max-width: $menuCollapseBreakpoint) {
-            width: 70%;
+            width: calc(100% - 64px);
         }
 
         .has-search .form-control {

@@ -38,12 +38,12 @@ const NavBar = () => {
     return (
         <nav
             className={
-                'show container navbar navbar-expand-lg navbar-dark py-0 px-md-4' +
-                (!showNav && ' collapse')
+                'show container navbar navbar-expand-lg navbar-dark py-0 ' +
+                (!showNav && 'collapse')
             }
         >
             <button
-                className="navbar-toggler pl-md-0"
+                className="navbar-toggler pl-0"
                 type="button"
                 onClick={() => {
                     setShowNav(!showNav)
