@@ -7,7 +7,9 @@ const NavBar = () => {
     const [showNav, setShowNav] = React.useState(false)
     const [searchTerm, setSearchTerm] = React.useState('')
 
-    const onSearchChange = (e) => setSearchTerm(e.target.value)
+    const onSearchChange = (e: {
+        target: { value: React.SetStateAction<string> }
+    }) => setSearchTerm(e.target.value)
 
     const onSearchKeyDown = (e: any) => {
         if (e.keyCode === 13 || e.charCode === 13) {
