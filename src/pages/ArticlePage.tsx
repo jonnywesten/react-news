@@ -60,11 +60,13 @@ const ArticlePage = () => {
 
             <h3 className="mt-5 mb-4">{`More ${article.sectionName}`}</h3>
             <div className="row">
-                {feed.map((article, key) => (
-                    <div key={key} className={'col-sm-6 col-md-4'}>
-                        <ArticleTeaser article={article} />
-                    </div>
-                ))}
+                {feed
+                    .filter((el) => el.id !== article.id)
+                    .map((article, key) => (
+                        <div key={key} className={'col-sm-6 col-md-4'}>
+                            <ArticleTeaser article={article} />
+                        </div>
+                    ))}
             </div>
             {!isComplete && <LoadingSpinner />}
         </div>
