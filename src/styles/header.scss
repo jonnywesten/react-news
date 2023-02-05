@@ -1,5 +1,5 @@
 $menuCollapseBreakpoint: 992px;
-$searchBarHeight: 37px;
+$searchBarHeight: 40px;
 
 .fixed-header {
     z-index: 1;
@@ -58,7 +58,7 @@ $searchBarHeight: 37px;
 
     .search-bar {
         position: absolute;
-        right: -15px;
+        right: -16px;
         top: -5px;
         width: auto;
         max-width: 420px;
