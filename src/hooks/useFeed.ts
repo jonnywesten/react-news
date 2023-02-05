@@ -1,6 +1,7 @@
 import { Article } from '../model/article'
 import useApi from './useApi'
 import React from 'react'
+import debounce from 'lodash.debounce'
 
 export interface IFeedParams {
     searchTerm?: string
@@ -23,11 +24,26 @@ const useFeed = ({ searchTerm, section }: IFeedParams) => {
 
     React.useEffect(() => {
         if (feed.length === 0 && (searchTerm || section)) {
-            loadNext()
+            updateFeed()
         }
     }, [feed])
 
-    const loadNext = async () => {
+    React.useEffect(() => {
+        window.onscroll = debounce(() => {
+            if (
+                window.innerHeight + document.documentElement.scrollTop >=
+                document.documentElement.offsetHeight - 700
+            ) {
+                updateFeed()
+            }
+        }, 100)
+
+        return () => {
+            window.onscroll = null
+        }
+    })
+
+    const updateFeed = async () => {
         if (!isComplete) {
             const apiResponse = await fetchMultiple(
                 { searchTerm, section },
@@ -39,7 +55,7 @@ const useFeed = ({ searchTerm, section }: IFeedParams) => {
         }
     }
 
-    return { feed, isComplete, loadNext }
+    return { feed, isComplete }
 }
 
 export default useFeed

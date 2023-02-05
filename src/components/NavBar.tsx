@@ -6,6 +6,17 @@ const NavBar = () => {
     const history = useHistory()
     const [showNav, setShowNav] = React.useState(false)
     const [searchTerm, setSearchTerm] = React.useState('')
+    const headerSections = [
+        'all',
+        'world',
+        'politics',
+        'business',
+        'culture',
+        'society',
+        'technology',
+        'science',
+        'sport',
+    ]
 
     const onSearchChange = (e: {
         target: { value: React.SetStateAction<string> }
@@ -23,18 +34,6 @@ const NavBar = () => {
             history.push('/search/' + encodeURIComponent(searchTerm))
         }
     }
-
-    const headerSections = [
-        'all',
-        'world',
-        'politics',
-        'business',
-        'culture',
-        'society',
-        'technology',
-        'science',
-        'sport',
-    ]
 
     return (
         <nav

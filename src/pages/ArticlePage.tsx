@@ -4,13 +4,15 @@ import { Article } from '../model/article'
 import ArticleTeaser from '../components/ArticleTeaser'
 import { useParams, useHistory } from 'react-router-dom'
 import useApi from '../hooks/useApi'
+import useFeed from '../hooks/useFeed'
 import LoadingSpinner from '../components/LoadingSpinner'
 
 const ArticlePage = () => {
     const [article, setArticle] = React.useState<Article | undefined>()
-    const [related, setRelated] = React.useState<Article[]>([])
     const params: { id: string } = useParams()
-    const { fetchSingle, fetchMultiple } = useApi()
+    const [related, setRelated] = React.useState<string | undefined>()
+    const { feed, isComplete } = useFeed({ section: related })
+    const { fetchSingle } = useApi()
     const history = useHistory()
 
     React.useEffect(() => {
@@ -25,9 +27,7 @@ const ArticlePage = () => {
             setArticle(article)
             window.scrollTo(0, 0)
             document.title = `${article.fields.headline} | React News`
-
-            const rel = await fetchMultiple({ section: article.sectionId })
-            setRelated(rel.filter((el) => el.id !== article.id).slice(0, 6))
+            setRelated(article.sectionId)
         } else {
             history.push('/')
         }
@@ -36,7 +36,7 @@ const ArticlePage = () => {
     if (!article) return <LoadingSpinner />
 
     return (
-        <div className="inner fade-in">
+        <div className="article-content fade-in">
             <h2 className="text-left">{article.fields.headline}</h2>
             <p className="byline text-muted">
                 {`${article.timeAgo} by ${article.fields.byline}`}
@@ -60,12 +60,13 @@ const ArticlePage = () => {
 
             <h3 className="mt-5 mb-4">{`More ${article.sectionName}`}</h3>
             <div className="row">
-                {related.map((article, key) => (
+                {feed.map((article, key) => (
                     <div key={key} className={'col-sm-6 col-md-4'}>
                         <ArticleTeaser article={article} />
                     </div>
                 ))}
             </div>
+            {!isComplete && <LoadingSpinner />}
         </div>
     )
 }

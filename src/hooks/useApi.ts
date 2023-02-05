@@ -16,6 +16,11 @@ const useApi = () => {
         return a
     }
 
+    const fetchSingle = (id: string): Promise<Article> => {
+        const query = `&show-fields=thumbnail,trailText,headline,byline,body&ids=${id}`
+        return _fetchFromApi(query).then((r) => r[0])
+    }
+
     const fetchMultiple = (
         params: IFeedParams,
         index: number = 1
@@ -32,18 +37,20 @@ const useApi = () => {
         return _fetchFromApi(query)
     }
 
-    const fetchSingle = (id: string): Promise<Article> => {
-        const query = `&show-fields=thumbnail,trailText,headline,byline,body&ids=${id}`
-        return _fetchFromApi(query).then((r) => r[0])
-    }
-
     const _fetchFromApi = async (query: string): Promise<Article[]> => {
-        const apiResponse = await fetch(API_URL + query + API_KEY)
-        const json = await apiResponse.json()
-
-        return (json?.response?.results || [])
-            .filter(_isValid)
-            .map(_handleArticle)
+        return fetch(API_URL + query + API_KEY)
+            .then(async (response) => {
+                if (response.ok) {
+                    const json = await response.json()
+                    return (json?.response?.results || [])
+                        .filter(_isValid)
+                        .map(_handleArticle)
+                }
+                throw new Error(response?.statusText)
+            })
+            .catch(() => {
+                return []
+            })
     }
 
     return { fetchMultiple, fetchSingle }
