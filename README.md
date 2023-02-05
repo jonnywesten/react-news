@@ -1,5 +1,5 @@
 ### `react-news`
 
-made with react, bootstrap and [guardian open platform](https://open-platform.theguardian.com/)
+made with react and guardian open platform
 
 [demo](http://news.code-smart.com)
