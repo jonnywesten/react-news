@@ -70,7 +70,7 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="search-bar navbar-brand">
-                <div className="form-group input-group-sm has-search">
+                <div className="has-search">
                     <input
                         name={'searchTerm'}
                         className="form-control"

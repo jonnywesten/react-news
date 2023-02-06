@@ -59,7 +59,7 @@ $searchBarHeight: 38px;
     .search-bar {
         position: absolute;
         right: -16px;
-        top: -5px;
+        top: 0;
         width: auto;
         @media screen and (max-width: $menuCollapseBreakpoint) {
             width: calc(100% - 64px);
@@ -86,7 +86,7 @@ $searchBarHeight: 38px;
             color: #bbb;
             cursor: pointer;
             transition: 0.1s color linear;
-            top: 5px;
+            top: 0;
             &:hover {
                 color: #666;
             }
