@@ -58,7 +58,7 @@ $searchBarHeight: 38px;
 
     .search-bar {
         position: absolute;
-        right: -16px;
+        right: 0;
         top: 0;
         width: auto;
         @media screen and (max-width: $menuCollapseBreakpoint) {

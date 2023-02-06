@@ -69,8 +69,8 @@ const NavBar = () => {
                     ))}
                 </ul>
             </div>
-            <div className="search-bar navbar-brand">
-                <div className="has-search">
+            <div className="search-bar">
+                <div className="has-search m-0">
                     <input
                         name={'searchTerm'}
                         className="form-control"
