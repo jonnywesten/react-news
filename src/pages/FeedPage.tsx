@@ -30,11 +30,6 @@ const FeedPage = () => {
                         {`Results for search term '${searchTerm}':`}
                     </h2>
                 )}
-                {section && (
-                    <h2 className="font-weight-bolder text-capitalize fade-in">
-                        {`${section} news`}
-                    </h2>
-                )}
             </div>
             {feed.map((article, i) => (
                 <div
