@@ -2,7 +2,7 @@ import React from 'react'
 
 const LoadingSpinner = () => {
     return (
-        <div className="col py-5 my-5 text-center">
+        <div className="col row text-center" style={{ padding: '64px 0' }}>
             <div className="loader" />
         </div>
     )
