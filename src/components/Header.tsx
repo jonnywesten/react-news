@@ -11,11 +11,26 @@ const Header = () => {
                         <h2 className="page-title">
                             <i
                                 style={{ fontSize: '110%' }}
-                                className="fa fa-globe mr-3"
+                                className="fa  fa-rss-square mr-3"
                             />
                             React News
                         </h2>
                     </Link>
+                    <a
+                        href="https://github.com/DanielElport/react-news"
+                        target="_blank"
+                        title="Fork me on GitHub!"
+                    >
+                        <h2
+                            className="page-title position-absolute"
+                            style={{ top: 15, right: 20 }}
+                        >
+                            <i
+                                style={{ fontSize: '110%' }}
+                                className="fa fa-github-square"
+                            />
+                        </h2>
+                    </a>
                 </div>
                 <NavBar />
             </div>
