@@ -13,7 +13,7 @@ $searchBarHeight: 38px;
 }
 
 .header-title {
-    background: transparent linear-gradient(to right, #50a1ef, 45%, transparent);
+    background: transparent linear-gradient(to right, $blue, 45%, transparent);
     border-radius: 0;
 
     a {

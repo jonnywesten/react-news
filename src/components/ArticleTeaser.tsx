@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Article } from '../model/article'
+import { Article } from '../model'
 import ImageRoll from './ImageRoll'
 
 const ArticleTeaser = ({ article }: { article: Article }) => {

@@ -48,7 +48,7 @@ const NavBar = () => {
             >
                 <span className="navbar-toggler-icon" />
             </button>
-            <div className={'navbar-collapse'}>
+            <div className="navbar-collapse">
                 <ul className="navbar-nav">
                     {headerSections.map((section) => (
                         <li

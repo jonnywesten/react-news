@@ -1,6 +1,6 @@
 import React from 'react'
 import ShareButtons from '../components/ShareButtons'
-import { Article } from '../model/article'
+import { Article } from '../model'
 import ArticleTeaser from '../components/ArticleTeaser'
 import { useParams, useHistory } from 'react-router-dom'
 import useApi from '../hooks/useApi'

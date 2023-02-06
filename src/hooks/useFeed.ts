@@ -1,12 +1,7 @@
-import { Article } from '../model/article'
+import { Article, IFeedParams } from '../model'
 import useApi from './useApi'
 import React from 'react'
 import debounce from 'lodash.debounce'
-
-export interface IFeedParams {
-    searchTerm?: string
-    section?: string
-}
 
 const useFeed = ({ searchTerm, section }: IFeedParams) => {
     const [feed, setFeed] = React.useState<Article[]>([])

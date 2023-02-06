@@ -1,8 +1,9 @@
 import React from 'react'
 import ArticleTeaser from '../components/ArticleTeaser'
 import { useHistory, useParams } from 'react-router-dom'
-import useFeed, { IFeedParams } from '../hooks/useFeed'
+import useFeed from '../hooks/useFeed'
 import LoadingSpinner from '../components/LoadingSpinner'
+import { IFeedParams } from '../model'
 
 const FeedPage = () => {
     const params: IFeedParams = useParams()

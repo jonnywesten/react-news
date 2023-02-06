@@ -1,5 +1,5 @@
 import React from 'react'
-import { Article } from '../model/article'
+import { Article } from '../model'
 
 const ImageRoll = ({ article }: { article: Article }) => {
     const [loading, setLoading] = React.useState(true)

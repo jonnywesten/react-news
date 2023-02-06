@@ -1,7 +1,6 @@
-import { Article } from '../model/article'
+import { Article, IFeedParams } from '../model'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
-import { IFeedParams } from './useFeed'
 TimeAgo.addLocale(en)
 
 const useApi = () => {
