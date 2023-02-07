@@ -16,13 +16,12 @@ const ArticlePage = () => {
     const history = useHistory()
 
     React.useEffect(() => {
-        setArticle(undefined)
         init(params.id)
     }, [params.id])
 
     const init = async (id: string) => {
+        setArticle(undefined)
         const article = await fetchSingle(id)
-
         if (article) {
             setArticle(article)
             setRelated(article.sectionId)
