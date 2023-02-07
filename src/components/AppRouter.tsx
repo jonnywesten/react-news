@@ -8,6 +8,7 @@ import {
 import FeedPage from '../pages/FeedPage'
 import Article from '../pages/ArticlePage'
 import Layout from './Layout'
+window.history.scrollRestoration = 'manual'
 
 const AppRouter = () => {
     return (

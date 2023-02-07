@@ -18,10 +18,10 @@ const FeedPage = () => {
     }, [feed, isComplete, section])
 
     React.useEffect(() => {
-        window.document.title =
+        document.title =
             (section || searchTerm)?.replace(/^\w/, (c) => c.toUpperCase()) +
             ' | React News'
-    })
+    }, [])
 
     return (
         <div className="row">

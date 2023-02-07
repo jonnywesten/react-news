@@ -44,6 +44,10 @@ $searchBarHeight: 38px;
         max-height: 38px;
     }
 
+    .nav-item.active {
+        background-color: darken($blue, 45%);
+    }
+
     .navbar-toggler {
         border: 0;
         outline: 0 !important;
