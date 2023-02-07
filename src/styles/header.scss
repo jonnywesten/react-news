@@ -42,7 +42,6 @@ $searchBarHeight: 38px;
         max-height: 38px;
     }
     .nav-item {
-        transition: 0.1s all linear;
         a {
             color: rgba(255, 255, 255, 0.75);
             @media screen and (max-width: $menuCollapseBreakpoint) {
