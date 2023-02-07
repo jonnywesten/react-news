@@ -1,13 +1,7 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
 import Header from './Header'
 
 const Layout = ({ children }: { children: JSX.Element }) => {
-    const history = useHistory()
-    React.useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [history.location])
-
     return (
         <div>
             <Header />
