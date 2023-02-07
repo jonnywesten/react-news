@@ -18,21 +18,21 @@ const NavBar = () => {
         'sport',
     ]
 
+    React.useEffect(() => {
+        setShowNav(false)
+    }, [history.location])
+
     const onSearchChange = (e: {
         target: { value: React.SetStateAction<string> }
     }) => setSearchTerm(e.target.value)
 
     const onSearchKeyDown = (e: { keyCode: number; charCode: number }) => {
-        if (e.keyCode === 13 || e.charCode === 13) {
-            submitSearch()
-        }
+        if (e.keyCode === 13 || e.charCode === 13) submitSearch()
     }
 
     const submitSearch = () => {
-        if (searchTerm) {
-            setShowNav(false)
+        if (searchTerm)
             history.push('/search/' + encodeURIComponent(searchTerm))
-        }
     }
 
     return (
@@ -60,7 +60,6 @@ const NavBar = () => {
                         >
                             <Link
                                 className="nav-link px-1 px-lg-3 px-xl-4 text-capitalize"
-                                onClick={() => setShowNav(false)}
                                 to={'/section/' + section}
                             >
                                 {section}
