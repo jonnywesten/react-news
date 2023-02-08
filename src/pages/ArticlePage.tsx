@@ -21,6 +21,7 @@ const ArticlePage = () => {
 
     const init = async (id: string) => {
         setArticle(undefined)
+        window.scrollTo(0, 0)
         const article = await fetchSingle(id)
         if (article) {
             setArticle(article)
