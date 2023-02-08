@@ -1,10 +1,10 @@
-.article-container {
+.main-container {
     padding-top: 108px;
+    min-height: 300vh;
     figure,
     aside {
         display: none;
     }
-    min-height: 100vh;
     img {
         border-radius: 10px 0 10px;
     }
