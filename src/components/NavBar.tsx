@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 const NavBar = () => {
     const history = useHistory()
     const [showNav, setShowNav] = React.useState(false)
-    const [searchTerm, setSearchTerm] = React.useState('')
+    const [searchTerm, setSearchTerm] = React.useState<string>()
     const headerSections = [
         'latest',
         'world',
@@ -24,7 +24,7 @@ const NavBar = () => {
 
     const onSearchChange = (e: {
         target: { value: React.SetStateAction<string> }
-    }) => setSearchTerm(e.target.value)
+    }) => setSearchTerm(e.target.value as string)
 
     const onSearchKeyDown = (e: { keyCode: number; charCode: number }) => {
         if (e.keyCode === 13 || e.charCode === 13) submitSearch()

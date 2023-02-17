@@ -1,13 +1,12 @@
 import { Article, IFeedParams } from '../model'
-import useApi from './useApi'
 import React from 'react'
 import debounce from 'lodash.debounce'
+import { fetchArticleFeed } from '../api'
 
 const useFeed = ({ searchTerm, section }: IFeedParams) => {
     const [feed, setFeed] = React.useState<Article[]>([])
     const [index, setIndex] = React.useState(0)
     const [isComplete, setIsComplete] = React.useState(false)
-    const { fetchMultiple } = useApi()
 
     React.useEffect(() => {
         if (searchTerm || section) {
@@ -40,13 +39,13 @@ const useFeed = ({ searchTerm, section }: IFeedParams) => {
 
     const updateFeed = async () => {
         if (!isComplete) {
-            const apiResponse = await fetchMultiple(
+            const response = await fetchArticleFeed(
                 { searchTerm, section },
                 index + 1
             )
             setIndex(index + 1)
-            setIsComplete(!apiResponse.length)
-            setFeed([...feed, ...apiResponse])
+            setIsComplete(!response.length)
+            setFeed([...feed, ...response])
         }
     }
 

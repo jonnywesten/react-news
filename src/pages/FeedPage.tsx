@@ -1,6 +1,6 @@
 import React from 'react'
 import ArticleTeaser from '../components/ArticleTeaser'
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import useFeed from '../hooks/useFeed'
 import LoadingSpinner from '../components/LoadingSpinner'
 import { IFeedParams } from '../model'
@@ -9,19 +9,12 @@ const FeedPage = () => {
     const params: IFeedParams = useParams()
     const { searchTerm, section } = params
     const { feed, isComplete } = useFeed(params)
-    const history = useHistory()
-
-    React.useEffect(() => {
-        if (section && isComplete && !feed.length) {
-            history.push('/')
-        }
-    }, [feed, isComplete, section])
 
     React.useEffect(() => {
         document.title =
             (section || searchTerm)?.replace(/^\w/, (c) => c.toUpperCase()) +
             ' | React News'
-    }, [])
+    }, [section, searchTerm])
 
     return (
         <div className="row">

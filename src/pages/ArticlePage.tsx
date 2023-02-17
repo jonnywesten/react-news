@@ -1,47 +1,39 @@
 import React from 'react'
 import ShareButtons from '../components/ShareButtons'
-import { Article } from '../model'
 import ArticleTeaser from '../components/ArticleTeaser'
 import { useParams, useHistory } from 'react-router-dom'
-import useApi from '../hooks/useApi'
 import useFeed from '../hooks/useFeed'
 import LoadingSpinner from '../components/LoadingSpinner'
+import useArticle from '../hooks/useArticle'
 
 const ArticlePage = () => {
     const params: { id: string } = useParams()
-    const [article, setArticle] = React.useState<Article | undefined>()
-    const [related, setRelated] = React.useState<string | undefined>()
-    const { feed, isComplete } = useFeed({ section: related })
-    const { fetchSingle } = useApi()
+    const { article, loading } = useArticle({ id: params.id })
+    const { feed, isComplete } = useFeed({ section: article?.sectionId })
     const history = useHistory()
 
     React.useEffect(() => {
-        init(params.id)
-    }, [params.id])
-
-    const init = async (id: string) => {
-        setArticle(undefined)
-        window.scrollTo(0, 0)
-        const article = await fetchSingle(id)
-        if (article) {
-            setArticle(article)
-            setRelated(article.sectionId)
-            document.title = `${article.fields.headline} | React News`
-        } else {
+        if (!loading && !article) {
             history.push('/')
         }
-    }
+    }, [loading])
+
+    React.useEffect(() => {
+        window.scrollTo(0, 0)
+        if (article) {
+            document.title = `${article?.fields.headline} | React News`
+        }
+    }, [article])
 
     if (!article) return <LoadingSpinner />
 
     return (
-        <div className="article-content fade-in">
+        <div className="article-content fade-in pt-3">
             <h2 className="text-left">{article.fields.headline}</h2>
             <p className="byline text-muted">
                 {`${article.timeAgo} by ${article.fields.byline}`}
             </p>
             <ShareButtons />
-
             <img
                 className="w-100 mt-2"
                 alt={article.fields.headline}
@@ -53,10 +45,9 @@ const ArticlePage = () => {
             <div
                 className="mb-2"
                 dangerouslySetInnerHTML={{
-                    __html: article.fields.body || '',
+                    __html: article.fields.body,
                 }}
             />
-
             <h3 className="mt-5 mb-4">{`More ${article.sectionName}`}</h3>
             <div className="row">
                 {feed
