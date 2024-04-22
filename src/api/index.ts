@@ -4,10 +4,10 @@ import en from 'javascript-time-ago/locale/en'
 TimeAgo.addLocale(en)
 
 const API_URL = 'https://content.guardianapis.com/search?'
-const API_KEY = '&api-key=57384910-e081-4e48-b70d-aed1b15c0aa3'
+const API_KEY = '02cb42ef-2535-4b12-b672-2f2a9ed635f8'
 
 const handleFetch = async (query: string): Promise<Article[]> => {
-    const url = API_URL + query + API_KEY
+    const url = API_URL + query + '&api-key=' + API_KEY
 
     const isValid = (a: Article) => a.type === 'article' && !!a.fields.thumbnail
     const handleArticle = (a: Article) => {
