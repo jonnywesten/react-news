@@ -30,10 +30,14 @@ input,
 }
 
 .fade-in {
-    animation-duration: 0.5s;
+    animation-duration: 0.3s;
     animation-name: animate-fade;
     animation-delay: 0.1s;
     animation-fill-mode: backwards;
+}
+
+.fade-in.slow {
+    animation-delay: 2s;
 }
 
 @keyframes animate-fade {
