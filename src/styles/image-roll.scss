@@ -1,25 +1,35 @@
 .image-roll {
-    width: 100%;
-    height: 0;
-    box-sizing: content-box;
-    padding-bottom: 60%;
-    background: #fafafa;
-    font-size: 36px;
-    color: #eee;
-    overflow: hidden;
+  width: 100%;
+  height: 0;
+  box-sizing: content-box;
+  padding-bottom: 60%;
+  background: #fafafa;
+  font-size: 36px;
+  color: #eee;
+  overflow: hidden;
+  border-radius: 10px 0 10px;
 
-    i {
-        position: absolute;
-        top: calc(50% - 18px);
-        left: calc(50% - 18px);
-    }
 
-    .section-name {
-        position: absolute;
-        background: linear-gradient(to right, $blue 25%, transparent);
-        padding: 4px 10px;
-        color: #fff;
-        font-size: 14px;
-        bottom: 0;
-    }
+  i {
+    position: absolute;
+    top: calc(50% - 18px);
+    left: calc(50% - 18px);
+  }
+
+  img {
+    transition: .3s ease-in-out;
+  }
+
+  img:hover {
+    transform: scale(1.15);
+  }
+
+  .section-name {
+    position: absolute;
+    background: linear-gradient(to right, $blue 25%, transparent);
+    padding: 4px 10px;
+    color: #fff;
+    font-size: 14px;
+    bottom: 0;
+  }
 }
