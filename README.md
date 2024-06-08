@@ -26,13 +26,13 @@ To get started with the project locally, follow these steps:
 2. **Install dependencies:**
 
    ```bash
-   nom install
+   npm install
    ```
 
 3. **Start the development server::**
 
    ```bash
-   nom start
+   npm start
    ```   
 
 ## Technologies Used
